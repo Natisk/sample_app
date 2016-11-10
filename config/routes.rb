@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  get '/edit',       to: 'users#edit'
-  resources :users
+  # resources :users, only: [:show, :edit, :update]
+  resources :users, except: [:new, :create]
 end
