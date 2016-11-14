@@ -17,13 +17,10 @@ gem 'jbuilder',                '>=2.4.1'
 gem 'pg',                      '>=0.18.4'
 
 group :development, :test do
-  # gem 'sqlite3', '1.3.11'
-  gem 'byebug',  '9.0.0', platform: :mri
   gem 'faker',                   '1.6.6'
 end
 
 group :development do
-  gem 'web-console',           '>=3.1.1'
   gem 'listen',                '>=3.0.8'
   gem 'spring',                '>=1.7.2'
   gem 'spring-watcher-listen', '>=2.0.0'
@@ -37,5 +34,4 @@ group :test do
 end
 
 group :production do
-  # gem 'pg',   '0.18.4'
 end
