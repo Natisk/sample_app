@@ -1,8 +1,10 @@
 <% provide(:title, 'Reset password') %>
+<!-- FIXME: It's not bootstrap! See http://getbootstrap.com/components/#page-header -->
 <h1>Password reset</h1>
 
 <div class='row'>
   <div class='col-md-6 col-md-offset-3'>
+    <!-- FIXME: It's not bootstrap! See http://getbootstrap.com/css/#forms -->
     <%= form_for(@user, url: password_reset_path(params[:id])) do |form| %>
         <%= render 'shared/error_messages', object: form.object %>
 

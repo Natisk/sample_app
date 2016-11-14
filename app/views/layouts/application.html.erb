@@ -2,17 +2,19 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
-    <%= render 'layouts/rails_default' %>
+    <%= render 'layouts/rails_default'  %>  <!-- TODO: move to dir -->
     <%= render 'layouts/shim' %>
   </head>
   <body>
     <%= render 'layouts/header' %>
     <div class="container">
+      <%# TODO: move to helper and make alerts with dismiss + additional opts %>
       <% flash.each do |message_type, message| %>
           <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-    <% end %>
+      <% end %>
       <%= yield %>
-      <%= render 'layouts/footer' %>
+      <%= render 'layouts/footer'  %> <!-- TODO: move to dir -->
+      <%# FIXME: Remove this debug! %>
       <%= debug(params) if Rails.env.development? %>
     </div>
   </body>

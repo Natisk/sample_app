@@ -1,10 +1,13 @@
 <% provide(:title, 'Forgot password') %>
+<!-- FIXME: It's not bootstrap! See http://getbootstrap.com/components/#page-header -->
 <h1>Forgot password</h1>
 
 <div class='row'>
   <div class='col-md-6 col-md-offset-3'>
+    <!-- FIXME: It's not bootstrap! See http://getbootstrap.com/css/#forms -->
     <%= form_for(:password_reset, url: password_resets_path) do |form| %>
         <%= form.label :email %>
+        <!-- FIXME: Me be this field required?-->
         <%= form.email_field :email, class: 'form-control' %>
 
         <%= form.submit 'Submit', class: 'btn btn-primary' %>
