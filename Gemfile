@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-# TODO: 'Use ~> or => or remove versions'
 gem 'rails',                   '>=5.0.0.1'
 gem 'bcrypt',                  '>=3.1.11'
 gem 'carrierwave',             '>=0.11.2'
@@ -21,6 +20,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'better_errors'
   gem 'listen',                '>=3.0.8'
   gem 'spring',                '>=1.7.2'
   gem 'spring-watcher-listen', '>=2.0.0'
