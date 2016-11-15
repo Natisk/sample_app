@@ -1,0 +1,7 @@
+%li
+  = gravatar_for user, size: 50
+  = link_to user.name, user
+  - if current_user.admin? && !current_user?(user)
+    .btn-group{"aria-label" => "admin_use", :role => "group"}
+      = button_to 'delete', user , method: :delete, data: { confirm: 'You sure?' }
+      = button_to 'update', edit_user_path(user) , method: :get
