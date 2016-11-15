@@ -1,0 +1,15 @@
+- provide(:title, 'About')
+%h1 About
+%p
+  The
+  %a{:href => "http://www.railstutorial.org/", :rel => "noopener", :target => "_blank"}
+    %em
+      Ruby on Rails
+      Tutorial
+  is a
+  %a{:href => "http://www.railstutorial.org/book", :rel => "noopener", :target => "_blank"} book
+  and
+  %a{:href => "http://screencasts.railstutorial.org/", :rel => "noopener", :target => "_blank"} screencast series
+  to teach web development with
+  = succeed "." do
+    %a{:href => "http://rubyonrails.org/", :rel => "noopener", :target => "_blank"} Ruby on Rails
