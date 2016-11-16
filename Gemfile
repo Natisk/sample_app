@@ -16,6 +16,7 @@ gem 'jbuilder',                '>=2.4.1'
 gem 'pg',                      '>=0.18.4'
 gem 'haml'
 gem 'html2haml'
+gem 'devise'
 
 group :development, :test do
   gem 'faker',                   '>=1.6.6'
@@ -26,6 +27,7 @@ group :development do
   gem 'listen',                '>=3.0.8'
   gem 'spring',                '>=1.7.2'
   gem 'spring-watcher-listen', '>=2.0.0'
+  gem 'binding_of_caller'
 end
 
 group :test do

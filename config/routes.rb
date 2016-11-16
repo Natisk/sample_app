@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   root   'static_pages#home'
 
   controller :static_pages do
@@ -8,19 +9,19 @@ Rails.application.routes.draw do
     get :contact
   end
 
-  get    '/login',   to: 'sessions#new'
-  post   '/login',   to: 'sessions#create'
-  delete '/logout',  to: 'sessions#destroy'
+  devise_scope :user do
+    get    '/login',   to: 'devise/sessions#new'
+    post   '/login',   to: 'devise/sessions#create'
+    delete '/logout',  to: 'devise/sessions#destroy'
+  end
 
   resources :users do
     member do
       get :following, :followers
     end
   end
-  get '/signup',  to: 'users#new'
+  get '/signup',  to: 'devise/registrations#new'
 
-  resources :account_activations, only: [:edit]
-  resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
 end

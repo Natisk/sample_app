@@ -8,10 +8,11 @@
   <body>
     <%= render 'layouts/application/header' %>
     <div class="container">
-      <%# TODO: move to helper and make alerts with dismiss + additional opts %>
-      <% flash.each do |message_type, message| %>
-          <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-      <% end %>
+        <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>">
+              <%= value %>
+            </div>
+        <% end %>
       <%= yield %>
       <%= render 'layouts/application/footer'  %>
     </div>
