@@ -1,0 +1,13 @@
+- provide(:title, 'About')
+%h1 About
+%p
+  This is the sample application developed on
+  %a{href: 'http://rubyonrails.org',
+     rel: 'noopener', target: '_blank'} Ruby on Rails.
+  It doesn't copied
+  %a{href: 'https://twitter.com',
+     rel: 'noopener', target: '_blank'} Twitter
+  (however, it does),  but you able to find here same features.
+  If you want to contact me for some reason, please check
+  = link_to 'contact', contact_path
+  page.

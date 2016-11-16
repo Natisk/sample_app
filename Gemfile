@@ -14,9 +14,11 @@ gem 'coffee-rails',            '>=4.2.1'
 gem 'jquery-rails',            '>=4.1.1'
 gem 'jbuilder',                '>=2.4.1'
 gem 'pg',                      '>=0.18.4'
+gem 'haml'
+gem 'html2haml'
 
 group :development, :test do
-  gem 'faker',                   '1.6.6'
+  gem 'faker',                   '>=1.6.6'
 end
 
 group :development do
@@ -33,5 +35,5 @@ group :test do
   gem 'guard-minitest',           '>=2.4.4'
 end
 
-group :production do
-end
+# group :production do
+# end

@@ -1,0 +1,23 @@
+- provide(:title, 'Edit user')
+.page-header
+  %h1 Update your profile
+.row
+  .col-md-6.col-md-offset-3
+    = form_for @user, html: {class: 'form' } do |form|
+      = render 'shared/error_messages', object: form.object
+      .form-group
+        = form.label :name
+        = form.text_field :name, class: 'form-control'
+      .form-group
+        = form.label :email
+        = form.email_field :email, class: 'form-control'
+      .form-group
+        = form.label :password
+        = form.password_field :password, class: 'form-control'
+      .form-group
+        = form.label :password_confirmation, 'Confirmation'
+        = form.password_field :password_confirmation, class: 'form-control'
+      = form.submit 'Save changes', class: 'btn btn-primary'
+    .gravatar_edit
+      = gravatar_for @user
+      %a{href: 'http://gravatar.com/emails'} change
