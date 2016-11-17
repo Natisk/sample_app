@@ -6,6 +6,8 @@ class Micropost < ApplicationRecord
   validates :content, presence: true, length: { maximum: 140 }
   validate  :picture_size
 
+  self.per_page = 10
+
   private
 
   # Validates the size of an uploaded picture.

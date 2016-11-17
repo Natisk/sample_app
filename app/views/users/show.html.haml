@@ -5,13 +5,23 @@
       %h1
         = gravatar_for @user
         = @user.name
+        - if current_user == @user || current_user.admin?
+          %br
+            = @user.email
     %section.stats
       = render 'stats'
+    - if current_user.admin?
+      .btn-group{'aria-label' => 'admin_use', role: 'group'}
+        = link_to 'delete', @user , method: :delete, data: { confirm: 'You sure?' }, class: 'btn btn-danger'
+        = link_to 'edit', edit_user_path(@user), class: 'btn btn-warning'
   .col-md-8
     = render 'users/follow_assets/follow_form' if user_signed_in?
     - if @user.microposts.any?
       %h3
         Microposts (#{@user.microposts.count})
+      .text-center
+        = will_paginate @microposts
       %ol.microposts
         = render @microposts
-      = will_paginate @microposts
+      .text-center
+        = will_paginate @microposts

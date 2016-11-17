@@ -32,6 +32,7 @@ textarea {
   }
 }
 
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -103,16 +104,6 @@ footer {
   }
 }
 
-/* miscellaneous */
-
-.debug_dump {
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-  @include box_sizing;
-}
-
 /* sidebar */
 
 aside {
@@ -144,6 +135,7 @@ aside {
 .gravatar {
   float: left;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .gravatar_edit {
@@ -192,42 +184,28 @@ aside {
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
+}
+
+.form-section {
+  margin-bottom: 3px;
 }
 
 input {
   height: auto !important;
 }
 
-#error_explanation {
+.alert-alert {
+  @extend .alert-danger;
+}
+
+.alert-notice {
+  @extend .alert-success;
+}
+
+#error_explanation{
   color: red;
-  ul {
-    color: red;
-    margin: 0 0 30px 0;
-  }
-}
-
-.field_with_errors {
-  @extend .has-error;
-  .form-control {
-    color: $state-danger-text;
-  }
-}
-
-.checkbox {
-  margin-top: -10px;
-  margin-bottom: 10px;
-  span {
-    margin-left: 20px;
-    font-weight: normal;
-  }
-}
-
-#session_remember_me {
-  width: auto;
-  margin-left: 0;
 }
 
 /* Users index */
