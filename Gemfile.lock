@@ -383,7 +383,7 @@ DEPENDENCIES
   guard-minitest (>= 2.4.4)
   haml
   html2haml
-  jbuilder (>= 2.4.1)
+  jbuilder
   jquery-rails (>= 4.1.1)
   listen (>= 3.0.8)
   mini_magick (>= 4.5.1)
@@ -396,7 +396,7 @@ DEPENDENCIES
   spring (>= 1.7.2)
   spring-watcher-listen (>= 2.0.0)
   sprockets
-  uglifier (>= 3.0.0)
+  uglifier
 
 BUNDLED WITH
    1.13.6
