@@ -1,11 +1,13 @@
 %body
   %header.navbar.navbar-fixed-top.navbar-inverse
     .container
-      = link_to 'fox on rails', root_path, id: 'logo'
+      = link_to root_path, id: 'logo' do
+        %img{ src: '/assets/favicon-32x32.png' }
+        Fox on Rails
       %nav
-        %ul.nav.navbar-nav.navbar-right
+        %ul.nav.navbar-nav.navbar-right.nav-header
           %li= link_to 'Home', root_path
-          %li= link_to 'Help', help_path
+          / %li= link_to 'Help', help_path
           - if user_signed_in?
             %li= link_to 'Users', users_path
             %li.dropdown

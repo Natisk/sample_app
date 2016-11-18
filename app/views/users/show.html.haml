@@ -22,7 +22,7 @@
         Delete
   .col-md-8
     - if @user.microposts.any?
-      %h3
+      %h3.text-center
         Microposts (#{@user.microposts.count})
       .text-center
         = will_paginate @microposts

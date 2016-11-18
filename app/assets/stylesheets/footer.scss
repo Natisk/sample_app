@@ -1,14 +1,12 @@
-$gray-medium-light: #eaeaea;
-
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid $gray-medium-light;
-  color: $gray-light;
+  border-top: 1px solid #eaeaea;
+  color: #999;
   a {
-    color: $gray;
+    color: gray;
     &:hover {
-      color: $gray-darker;
+      color: #222;
     }
   }
   small {

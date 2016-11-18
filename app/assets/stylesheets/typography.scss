@@ -1,3 +1,6 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
@@ -15,7 +18,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $gray-light;
+  color: #999;
 }
 
 p {
