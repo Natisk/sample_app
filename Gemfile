@@ -18,6 +18,7 @@ gem 'haml'
 gem 'html2haml'
 gem 'devise'
 
+
 group :development, :test do
   gem 'faker',                   '>=1.6.6'
 end
