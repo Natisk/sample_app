@@ -2,7 +2,10 @@
   = gravatar_for user, size: 50
   = link_to user.name, user
   - if current_user.admin?
+    %br
     = user.email
     .btn-group.pull-right{'aria-label' => 'admin_use', role: 'group'}
-      = link_to 'delete', user , method: :delete, data: { confirm: 'You sure?' }, class: 'btn btn-danger'
-      = link_to 'edit', edit_user_path(user), class: 'btn btn-warning'
+      = link_to edit_user_path(user), data: { toggle: 'tooltip' }, 'title' => 'Edit', class: 'btn btn-warning' do
+        %span.glyphicon.glyphicon-pencil
+      = link_to user , method: :delete, data: { toggle: 'tooltip', confirm: 'You sure?' }, 'title' => 'Delete', class: 'btn btn-danger' do
+        %span.glyphicon.glyphicon-trash

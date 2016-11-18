@@ -10,12 +10,17 @@
             = @user.email
     %section.stats
       = render 'stats'
+    .follow-buttons
+      = render 'users/follow_assets/follow_form'
+    .admin-buttons
     - if current_user.admin?
-      .btn-group{'aria-label' => 'admin_use', role: 'group'}
-        = link_to 'delete', @user , method: :delete, data: { confirm: 'You sure?' }, class: 'btn btn-danger'
-        = link_to 'edit', edit_user_path(@user), class: 'btn btn-warning'
+      = link_to edit_user_path(@user), class: 'btn btn-warning' do
+        %span.glyphicon.glyphicon-pencil
+        Edit
+      = link_to @user , method: :delete, data: { confirm: 'You sure?' }, class: 'btn btn-danger' do
+        %span.glyphicon.glyphicon-trash
+        Delete
   .col-md-8
-    = render 'users/follow_assets/follow_form' if user_signed_in?
     - if @user.microposts.any?
       %h3
         Microposts (#{@user.microposts.count})

@@ -1,0 +1,12 @@
+.follow-buttons{
+  margin: 10px 0;
+}
+.admin-buttons {
+  margin: 10px 0;
+  .btn{
+    margin-right: 3px;
+  }
+  .btn:nth-last-child{
+    margin-right: 0;
+  }
+}
