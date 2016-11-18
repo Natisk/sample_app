@@ -56,6 +56,7 @@ GEM
     bootstrap-will_paginate (0.0.10)
       will_paginate
     builder (3.2.2)
+    cancancan (1.15.0)
     carrierwave (0.11.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -374,6 +375,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (>= 3.3.6)
   bootstrap-will_paginate (>= 0.0.10)
+  cancancan (~> 1.10)
   carrierwave (>= 0.11.2)
   coffee-rails (>= 4.2.1)
   devise

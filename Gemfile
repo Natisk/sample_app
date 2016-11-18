@@ -17,6 +17,7 @@ gem 'pg',                      '>=0.18.4'
 gem 'haml'
 gem 'html2haml'
 gem 'devise'
+gem 'cancancan',               '~> 1.10'
 
 
 group :development, :test do
