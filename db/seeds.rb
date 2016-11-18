@@ -3,7 +3,7 @@ User.transaction do
   User.create!(name:  'Admin Admin',
                email: 'admin@admin.com',
                password:              'admin_',
-               admin:     true,
+               role:     'admin',
                confirmed_at: Time.zone.now)
 
   99.times do |n|

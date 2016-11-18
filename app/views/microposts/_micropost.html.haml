@@ -2,7 +2,7 @@
   = link_to gravatar_for(micropost.user, size: 50), micropost.user
   %span.user
     = link_to micropost.user.name, micropost.user
-    - if current_user == micropost.user || current_user.admin?
+    - if current_user == micropost.user
       = link_to '', micropost, method: :delete, data: { toggle: 'tooltip', confirm: 'You sure?' }, 'title' => 'Delete', class: 'btn glyphicon glyphicon-remove pull-right'
   %span.content
     = micropost.content

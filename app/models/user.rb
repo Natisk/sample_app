@@ -13,6 +13,7 @@ class User < ApplicationRecord
            dependent:   :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  ROLES = %i[admin moderator member banned]
 
   # Returns a user's status feed.
   def feed

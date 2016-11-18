@@ -13,7 +13,7 @@
     .follow-buttons
       = render 'users/follow_assets/follow_form'
     .admin-buttons
-    - if current_user.admin?
+    - if #need to add admin role
       = link_to edit_user_path(@user), class: 'btn btn-warning' do
         %span.glyphicon.glyphicon-pencil
         Edit
