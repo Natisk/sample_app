@@ -395,7 +395,6 @@ DEPENDENCIES
   sass-rails (>= 5.0.6)
   spring (>= 1.7.2)
   spring-watcher-listen (>= 2.0.0)
-  sprockets
   uglifier
 
 BUNDLED WITH
