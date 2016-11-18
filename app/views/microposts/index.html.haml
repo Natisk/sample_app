@@ -1,0 +1,9 @@
+- provide(:title, 'Abyss')
+.page-header
+  %h1 Abyss
+.text-center
+  = will_paginate @microposts
+%ol.microposts
+  = render @microposts
+.text-center
+  = will_paginate @microposts

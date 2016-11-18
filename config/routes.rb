@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
-  devise_for :users
   root   'static_pages#home'
+
+  devise_for :users
+  get '/signup',  to: 'devise/registrations#new'
 
   controller :static_pages do
     get :help
@@ -20,9 +22,10 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  get '/signup',  to: 'devise/registrations#new'
 
   resources :microposts,          only: [:create, :destroy]
+  get '/abyss',   to: 'microposts#index'
+
   resources :relationships,       only: [:create, :destroy]
   resources :comments,            only: [:create, :destroy]
 end
