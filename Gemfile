@@ -17,7 +17,7 @@ gem 'pg',                      '>=0.18.4'
 gem 'haml'
 gem 'html2haml'
 gem 'devise'
-gem 'sprockets', '~> 4.0.0.beta4'
+# gem 'sprockets', '~> 4.0.0.beta4'
 
 group :development, :test do
   gem 'faker',                   '>=1.6.6'
