@@ -12,7 +12,7 @@
     %span.comments
       %h3
         Comments:
-        - if @micropost.comments.any?
+        - if micropost.comments.any?
           = render 'comments/comment'
         = render 'comments/comment_form'
 
