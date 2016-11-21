@@ -13,7 +13,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    if current_user.role == 'admin'
+      @user = User.find(params[:id])
+    else
+      redirect_to users_url
+    end
   end
 
   def update
@@ -27,9 +31,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = 'User deleted'
-    redirect_to users_url
+    if current_user.role == 'admin'
+      User.find(params[:id]).destroy
+      flash[:success] = 'User deleted'
+    else
+      redirect_to users_url
+    end
   end
 
   def following
@@ -49,14 +56,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email)
-  end
-
-  # Before filters
-
-  # Confirms the correct user.
-  def correct_user
-    @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user
+    params.require(:user).permit(:name, :email, :role)
   end
 end

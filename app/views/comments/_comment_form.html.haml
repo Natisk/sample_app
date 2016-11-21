@@ -1,7 +1,8 @@
-= form_for(@comment, html: { multipart: true }) do |form|
+= form_for([@micropost, @micropost.comment.build]) do |f|
   = render 'shared/error_messages', object: form.object
-  .field
-    - form.hidden_field :commenter, current_user.name
-    = form.text_area :content, placeholder: 'Compose new comment...'
-  = form.submit 'Post', class: 'btn btn-primary'
+    .form-group
+      - f.hidden_field :commenter, current_user.name
+      = f.text_area :content, placeholder: 'Compose new comment...', class: 'form-control'
+    .form-group
+      = form.submit 'Post', class: 'btn btn-primary'
 

@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable
@@ -13,7 +11,7 @@ class User < ApplicationRecord
            dependent:   :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-  ROLES = %i[admin moderator member banned]
+  ROLES = %w(admin moderator member)
 
   # Returns a user's status feed.
   def feed

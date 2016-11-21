@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
-  before_action :correct_user,       only: :destroy
+  before_action :micropost, only: [:create, :destroy]
 
   def index
     @microposts = Micropost.paginate(page: params[:page])
@@ -29,8 +29,7 @@ class MicropostsController < ApplicationController
     params.require(:micropost).permit(:content, :picture)
   end
 
-  def correct_user
+  def micropost
     @micropost = Micropost.find_by(id: params[:id])
-    redirect_to root_url if @micropost.nil? || @micropost.user != current_user
   end
 end

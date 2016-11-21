@@ -8,7 +8,7 @@ User.transaction do
 
   99.times do |n|
     name  = Faker::Name.name
-    email = "example-#{n+1}@fox_on_rails.com"
+    email = "example#{n+1}@foxrails.com"
     password = 'password'
     User.create!(name:  name,
                  email: email,

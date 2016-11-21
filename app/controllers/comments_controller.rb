@@ -1,9 +1,11 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:create, :destroy]
 
   def create
-    @micropost = Micropost.find(params[:id])
-    @comment = @micropost.comments.create(comment_params)
+    @micropost = Micropost.find_by(id: params[:id])
+    @comment = @micropost.comments.build(comment_params)
+    flash[:success] = 'Comment created!'
+    render 'static_pages/home'
   end
 
   def destroy
@@ -15,5 +17,9 @@ class CommentsController < ApplicationController
   private
   def comment_params
     params.require(:comment).permit(:commenter, :body)
+  end
+
+  def comment
+    @comment = Comment.find_by(id: params[:id])
   end
 end

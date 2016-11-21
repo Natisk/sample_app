@@ -5,15 +5,17 @@
       %h1
         = gravatar_for @user
         = @user.name
-        - if current_user == @user || current_user.admin?
+        - if current_user == @user || %w(moderator admin).include?(current_user.role)
           %br
             = @user.email
+        %br
+        = "Status: #{@user.role}"
     %section.stats
       = render 'stats'
     .follow-buttons
       = render 'users/follow_assets/follow_form'
     .admin-buttons
-    - if #need to add admin role
+    - if current_user.role == 'admin'
       = link_to edit_user_path(@user), class: 'btn btn-warning' do
         %span.glyphicon.glyphicon-pencil
         Edit

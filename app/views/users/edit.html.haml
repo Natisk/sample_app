@@ -13,6 +13,12 @@
         .col-sm-10
           = f.email_field :email, required: true, class: 'form-control'
       .form-group
+        - User::ROLES.each do |role|
+          .col-sm-10
+            .radio-inline
+              = f.radio_button :role, "#{role}"
+              #{role}
+      .form-group
         .col-sm-12
           .gravatar_edit
             = gravatar_for @user

@@ -2,7 +2,7 @@
   = link_to gravatar_for(micropost.user, size: 50), micropost.user
   %span.user
     = link_to micropost.user.name, micropost.user
-    - if current_user == micropost.user
+    - if can?(:destroy, micropost)
       = link_to '', micropost, method: :delete, data: { toggle: 'tooltip', confirm: 'You sure?' }, 'title' => 'Delete', class: 'btn glyphicon glyphicon-remove pull-right'
   %span.content
     = micropost.content
@@ -10,7 +10,10 @@
   %span.timestamp
     Posted #{time_ago_in_words(micropost.created_at)} ago.
     %span.comments
-    = # render @comment
-    = # render 'comments/comment_form'
+      %h3
+        Comments:
+        - if @micropost.comments.any?
+          = render 'comments/comment'
+        = render 'comments/comment_form'
 
 
