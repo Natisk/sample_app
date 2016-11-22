@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118162724) do
+ActiveRecord::Schema.define(version: 20161122114731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.string   "commenter"
     t.text     "body"
     t.integer  "micropost_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "commenter_id"
     t.index ["created_at"], name: "index_comments_on_created_at", using: :btree
     t.index ["micropost_id"], name: "index_comments_on_micropost_id", using: :btree
   end

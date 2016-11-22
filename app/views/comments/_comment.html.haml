@@ -1,6 +1,7 @@
 %li
-  = @micropost.comments.each do |comment|
-    %p
-      = comment.commenter
-    %p
-      = comment.body
+  = gravatar_for comment.commenter, 40
+  %span.user
+    Commenter:
+    = link_to comment.commenter_name
+  %p
+    = comment.body

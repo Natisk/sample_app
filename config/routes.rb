@@ -23,10 +23,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :microposts do
+  resources :microposts, only: [:create, :destroy] do
     resources :comments
   end
-  resources :microposts,          only: [:create, :destroy]
   get '/abyss',   to: 'microposts#index'
 
   resources :relationships,       only: [:create, :destroy]
