@@ -14,7 +14,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    Comment.find_by(id: params[:id]).destroy
+    @comment = Comment.find_by(id: params[:id])
+    @comment.destroy
     flash[:success] = 'Comment deleted'
     redirect_to :back
   end

@@ -1,7 +1,9 @@
-%li
+%li.list-unstyled
   = gravatar_for comment.commenter, 40
   %span.user
     Commenter:
-    = link_to comment.commenter_name
-  %p
+    = link_to comment.commenter_name, comment.commenter
+    - if can?(:destroy, comment)
+      = link_to '', micropost_comment_path(comment.micropost, comment), method: :delete, data: { toggle: 'tooltip', confirm: 'You sure?' }, 'title' => 'Delete', class: 'btn glyphicon glyphicon-remove pull-right'
+  %span.content
     = comment.body

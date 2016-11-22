@@ -10,12 +10,10 @@
   %span.timestamp
     Posted #{time_ago_in_words(micropost.created_at)} ago.
   %span
-    %h4
-      Comments:
     %ol.comments
       - if micropost.comments.any?
-        =# render partial: 'comments/comment', collection: micropost.comments
+        %h4
+          Comments:
         = render micropost.comments
-      = render partial: 'comments/comment_form', locals: { micropost: micropost }
-
-
+      - if can? :create, @comment
+        = render partial: 'comments/comment_form', locals: { micropost: micropost }

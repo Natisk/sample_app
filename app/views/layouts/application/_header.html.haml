@@ -12,7 +12,7 @@
             %li= link_to 'Users', users_path
             %li.dropdown
               %a.dropdown-toggle{'data-toggle' => 'dropdown', href: '#'}
-                Account
+                = gravatar_for current_user, 20
                 %b.caret
               %ul.dropdown-menu
                 %li= link_to 'Profile', current_user
