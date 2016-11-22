@@ -1,9 +1,9 @@
-= form_for(@micropost, html: { multipart: true, class: 'form' }) do |form|
-  = render 'shared/error_messages', object: form.object
+= form_for(@micropost, html: { multipart: true, class: 'form' }) do |f|
+  = render 'shared/error_messages', object: f.object
   .form-group
-    = form.text_area :content, placeholder: 'Compose new micropost...', class: 'form-control'
+    = f.text_area :content, placeholder: 'Compose new micropost...', class: 'form-control'
     %span.picture
-      = form.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
+      = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
   .form-group
-    = form.button '<span class="glyphicon glyphicon-pencil"> Post</span>'.html_safe, class: 'btn btn-add-post'
+    = f.button '<span class="glyphicon glyphicon-pencil"> Post</span>'.html_safe, class: 'btn btn-add-post'
   = javascript_include_tag 'microposts'

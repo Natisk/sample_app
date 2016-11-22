@@ -2,8 +2,9 @@
   = link_to gravatar_for(micropost.user, 50), micropost.user
   %span.user
     = link_to micropost.user.name, micropost.user
-    - if can?(:destroy, micropost)
+    - if can?(:destroy || :update, micropost)
       = link_to '', micropost, method: :delete, data: { toggle: 'tooltip', confirm: 'You sure?' }, 'title' => 'Delete', class: 'btn glyphicon glyphicon-remove pull-right'
+      = link_to '', edit_micropost_path(micropost), data: { toggle: 'tooltip' }, 'title' => 'Edit', class: 'btn glyphicon glyphicon-pencil pull-right'
   %span.content
     = micropost.content
     = image_tag micropost.picture.url if micropost.picture?

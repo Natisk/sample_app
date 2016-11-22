@@ -12,8 +12,9 @@
         = "Status: #{@user.role}"
     %section.stats
       = render 'stats'
-    .follow-buttons
-      = render 'users/follow_assets/follow_form'
+    - unless @user == current_user
+      .follow-buttons
+        = render 'users/follow_assets/follow_form'
     .admin-buttons
     - if current_user.role == 'admin'
       = link_to edit_user_path(@user), class: 'btn btn-warning' do

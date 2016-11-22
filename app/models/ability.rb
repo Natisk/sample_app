@@ -17,7 +17,7 @@ class Ability
       can :read, :all
       can :create, Micropost
       can :create, Comment
-      can [:update, :destroy], Micropost, user_id: user.id
+      can [:edit, :update, :destroy], Micropost, user_id: user.id
       can [:update, :destroy], User, id: user.id
     end
 
