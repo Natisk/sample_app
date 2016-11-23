@@ -1,7 +1,8 @@
 class MicropostsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
-  before_action :micropost, only: [:create, :destroy, :edit, :update]
+  before_action :micropost, only: [:create, :destroy, :edit, :update, :like_post, :dislike_post]
   before_action :permissions, only: [:destroy, :edit, :update]
+
 
   def index
     @microposts = Micropost.paginate(page: params[:page])
@@ -29,6 +30,24 @@ class MicropostsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def like_post
+    @micropost = Micropost.find_by(id: params[:micropost_id])
+    @micropost.liked_by current_user
+    respond_to do |format|
+      format.json { render json: {like_count: @micropost.get_likes.size},  status: :ok }
+    end
+    # redirect_to :back
+  end
+
+  def dislike_post
+    @micropost = Micropost.find_by(id: params[:micropost_id])
+    @micropost.downvote_from current_user
+    respond_to do |format|
+      format.json { render json: {dislike_count: @micropost.get_dislikes.size}, status: :ok }
+    end
+    # redirect_to :back
   end
 
   def destroy

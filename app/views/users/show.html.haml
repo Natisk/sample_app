@@ -1,15 +1,13 @@
 - provide(:title, @user.name)
 .row
   %aside.col-md-4
-    %section.user_info
+    %section.user_info.list-unstyled
       %h1
         = gravatar_for @user, 80
-        = @user.name
+        %li= @user.name
         - if current_user == @user || %w(moderator admin).include?(current_user.role)
-          %br
-            = @user.email
-        %br
-        = "Status: #{@user.role}"
+          %li= @user.email
+        %li= "Status: #{@user.role}"
     %section.stats
       = render 'stats'
     - unless @user == current_user
