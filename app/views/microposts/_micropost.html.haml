@@ -15,9 +15,10 @@
       - if micropost.comments.any?
         %h4
           Comments:
-        %button.see-more
-          Show
-          = pluralize(micropost.comments.count - 5, 'more comments')
+        - if micropost.comments.count > 5
+          %button.see-more
+            Show
+            = pluralize(micropost.comments.count - 5, 'more comments')
         = render micropost.comments
         %button.hide-comments
           Hide
