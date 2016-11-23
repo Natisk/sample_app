@@ -8,9 +8,9 @@ class Ability
     elsif user.role == 'admin'
       can :manage, :all
     elsif user.role == 'moderator'
+      can :read, :all
       can :manage, Micropost
       can :manage, Comment
-      can :read, :all
       can :ban, User
       can [:update, :destroy], User, id: user.id
     elsif user.role == 'member'

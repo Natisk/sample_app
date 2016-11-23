@@ -5,5 +5,5 @@
     %span.picture
       = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
   .form-group
-    = f.button '<span class="glyphicon glyphicon-pencil"> Post</span>'.html_safe, class: 'btn btn-add-post'
+    = f.button 'Post', class: 'btn btn-add-post'
   = javascript_include_tag 'microposts'

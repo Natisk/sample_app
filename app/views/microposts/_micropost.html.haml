@@ -15,6 +15,11 @@
       - if micropost.comments.any?
         %h4
           Comments:
+        %button.see-more
+          Show
+          = pluralize(micropost.comments.count - 5, 'more comments')
         = render micropost.comments
-      - if can? :create, @comment
+        %button.hide-comments
+          Hide
+      - if can? :create, Comment
         = render partial: 'comments/comment_form', locals: { micropost: micropost }
