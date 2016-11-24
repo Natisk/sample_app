@@ -1,6 +1,6 @@
-= form_for(micropost.comments.build, url: micropost_comments_path(micropost), html: { class: 'form' }) do |f|
+= form_for(micropost.comments.build, url: micropost_comments_path(micropost), html: { class: 'form comment_form' }) do |f|
   = render 'shared/error_messages', object: f.object
   .form-group
     = f.text_area :body, placeholder: 'Compose new comment...', class: 'form-control'
   .form-group
-    = f.submit 'Post', class: 'btn btn-primary'
+    = f.submit 'Post comment', class: 'btn btn-primary'

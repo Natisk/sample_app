@@ -3,21 +3,43 @@ class CommentsController < ApplicationController
 
   def create
     micropost = Micropost.find_by(id: params[:micropost_id])
-    comment = micropost.comments.build(comment_params.merge(commenter: current_user))
-    # comment.commenter = current_user
-    if comment.save
-      flash[:notice] = 'Comment created!'
+    @comment = micropost.comments.build(comment_params.merge(commenter: current_user))
+    if @comment.save
+      respond_to do |format|
+        format.html do
+          flash[:notice] = 'Comment created!'
+          redirect_to :back
+        end
+        format.json { render @comment }
+      end
     else
-      flash[:danger] = comment.errors.messages
+      respond_to do |format|
+        format.html do
+          flash[:danger] = @comment.errors.full_messages
+          redirect_to :back
+        end
+        format.json { render json: {errors: @comment.errors.full_messages  }, status: :unprocessable_entity }
+      end
     end
-    redirect_to :back
   end
 
   def destroy
     @comment = Comment.find_by(id: params[:id])
-    @comment.destroy
-    flash[:success] = 'Comment deleted'
-    redirect_to :back
+    if @comment.destroy
+      respond_to do |format|
+        format.html do
+          flash[:success] = 'Comment deleted'
+          redirect_to :back
+        end
+        format.json { render @comment }
+      end
+    else
+      format.html do
+        flash[:danger] = @comment.errors.full_messages
+        redirect_to :back
+      end
+      format.json { render json: {errors: @comment.errors.full_messages  }, status: :unprocessable_entity }
+    end
   end
 
   private

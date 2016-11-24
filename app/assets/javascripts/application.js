@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require_self
-//= require jquery
+//= require jquery2
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require ckeditor/ckeditor

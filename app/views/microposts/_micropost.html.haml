@@ -1,19 +1,19 @@
-%li{id: "micropost-#{micropost.id}"}
-  = link_to gravatar_for(micropost.user, 50), micropost.user
-  %span.user
-    = link_to micropost.user.name, micropost.user
-    - if can?(:destroy || :update, micropost)
-      = link_to '', micropost, method: :delete, data: { toggle: 'tooltip', confirm: 'You sure?' }, 'title' => 'Delete', class: 'btn glyphicon glyphicon-remove pull-right'
-      = link_to '', edit_micropost_path(micropost), data: { toggle: 'tooltip' }, 'title' => 'Edit', class: 'btn glyphicon glyphicon-pencil pull-right'
-  %span.content
-    = raw micropost.content
-    = image_tag micropost.picture.url if micropost.picture?
-  %span.timestamp.vote-box
-    Posted #{time_ago_in_words(micropost.created_at)} ago.
-    = link_to "#{micropost.get_dislikes.size}", micropost_dislike_path(micropost), data: { toggle: 'tooltip', postID: micropost.id }, 'title' => 'Dislike', class: 'glyphicon glyphicon-thumbs-down pull-right dislike'
-    = link_to "#{micropost.get_likes.size}", micropost_like_path(micropost), data: { toggle: 'tooltip', postID: micropost.id }, 'title' => 'Like', class: 'glyphicon glyphicon-thumbs-up pull-right like'
-  %span
-    %ol.comments
+%li
+  %div{id: "micropost-#{micropost.id}"}
+    = link_to gravatar_for(micropost.user, 50), micropost.user
+    %div.user
+      = link_to micropost.user.name, micropost.user
+      - if can?(:destroy || :update, micropost)
+        = link_to '', micropost, method: :delete, data: { toggle: 'tooltip', confirm: 'You sure?' }, 'title' => 'Delete', class: 'btn glyphicon glyphicon-remove pull-right'
+        = link_to '', edit_micropost_path(micropost), data: { toggle: 'tooltip' }, 'title' => 'Edit', class: 'btn glyphicon glyphicon-pencil pull-right'
+    %div.content
+      = raw micropost.content
+      = image_tag micropost.picture.url if micropost.picture?
+    %div.timestamp.vote-box
+      Posted #{time_ago_in_words(micropost.created_at)} ago.
+      = link_to "#{micropost.get_dislikes.size}", micropost_dislike_path(micropost), data: { toggle: 'tooltip', postID: micropost.id }, 'title' => 'Dislike', class: 'glyphicon glyphicon-thumbs-down pull-right dislike'
+      = link_to "#{micropost.get_likes.size}", micropost_like_path(micropost), data: { toggle: 'tooltip', postID: micropost.id }, 'title' => 'Like', class: 'glyphicon glyphicon-thumbs-up pull-right like'
+    %div.comments
       - if micropost.comments.any?
         %h4
           Comments:
@@ -21,7 +21,8 @@
           %button.see-more
             Show
             = pluralize(micropost.comments.count - 5, 'more comments')
-        = render micropost.comments
+        %ol.comments-list
+          = render micropost.comments
         %button.hide-comments
           Hide
       - if can? :create, Comment

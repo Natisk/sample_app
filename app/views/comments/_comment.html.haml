@@ -1,11 +1,11 @@
-%li.user-comment.list-unstyled
-  = gravatar_for comment.commenter, 40
-  %span.user
+%li.list-unstyled.user-comment
+  %div.user
+    = gravatar_for comment.commenter, 40
     Commenter:
     = link_to comment.commenter_name, comment.commenter
     - if can?(:destroy, comment)
-      = link_to '', micropost_comment_path(comment.micropost, comment), method: :delete, data: { toggle: 'tooltip', confirm: 'You sure?' }, 'title' => 'Delete', class: 'btn glyphicon glyphicon-remove pull-right'
-  %span.content
+      = link_to '', micropost_comment_path(comment.micropost, comment), data: { toggle: 'tooltip' }, 'title' => 'Delete', class: 'btn glyphicon glyphicon-remove pull-right delete-comment'
+  %p.content
     = comment.body
   %span.timestamp
     Commented #{time_ago_in_words(comment.created_at)} ago.
