@@ -7,13 +7,13 @@ $(document).on('ready page:change', function() {
     });
 
     $('.like').click(function (e) {
-        e.preventDefault();
+        e.preventDefault()
         post_id = $(this).data().postid;
         url = '/microposts/' + post_id + '/like';
         $.post(
             url,
             function (data) {
-                $('.like[data-postid="'+post_id+'"]').text(data.like_count);
+                update_likes(data, post_id);
             },
             'JSON'
         );
@@ -26,9 +26,14 @@ $(document).on('ready page:change', function() {
         $.post(
             url,
             function (data) {
-                $('.dislike[data-postid="'+post_id+'"]').text(data.dislike_count);
+                update_likes(data, post_id);
             },
             'JSON'
         );
     });
+
+    function update_likes(data, post_id) {
+        $('.dislike[data-postid="'+post_id+'"]').text(data.dislike_count).addClass('post-disliked').blur();;
+        $('.like[data-postid="'+post_id+'"]').text(data.like_count).addClass('post-liked').blur();
+    }
 });

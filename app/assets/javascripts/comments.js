@@ -11,4 +11,6 @@ $(document).on('ready page:change', function() {
             $(".see-more").fadeIn();
         });
     });
+
+
 });
