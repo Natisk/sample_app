@@ -6,6 +6,10 @@ $(document).on('ready page:change', function() {
             {followed_id: $(this).data().followedId},
             function (data) {
                 update_relationships(data);
+                $('button.follow').addClass('unfollow');
+                $('button.follow').removeClass('follow');
+                $('button.follow').attr('data-followed-id', data.relationship_id);
+                $('span.glyphicon.glyphicon-send').text('Unfollow');
             },
             'JSON'
         )
@@ -13,9 +17,7 @@ $(document).on('ready page:change', function() {
 
     $('button.unfollow').click(function () {
         followed_id = $(this).data().followedId;
-        console.log(followed_id);
         url = '/relationships/' + followed_id;
-        console.log(url);
         $.ajax({
             method: "POST",
             url: url,
@@ -23,6 +25,10 @@ $(document).on('ready page:change', function() {
             dataType: 'JSON',
             success: function (data) {
                 update_relationships(data);
+                $('button.follow').removeClass('follow');
+                $('button.follow').addClass('unfollow');
+                $('button.follow').data('followed-id', 'Kill me, please');
+                $('span.glyphicon.glyphicon-send').text('Follow');
             }
         });
     });
