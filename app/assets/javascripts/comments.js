@@ -35,9 +35,9 @@ $(document).on('ready page:change', function() {
             $(comment_li).find('div.user').prepend(data.commenter.avatar_img);
             $(comment_li).find('a.commenter').attr('href', data.commenter.user_url).text(data.commenter.name);
             if( data.destroy_link != undefined ){
-                $(comment_li).find('a.destroy_comment').attr('href', data.destroy_link).text('');
+                $(comment_li).find('a.delete-comment').attr('href', data.destroy_link).text('');
             }else{
-                $(comment_li).find('a.destroy_comment').remove();
+                $(comment_li).find('a.delete-comment').remove();
             }
             $(comment_li).find('p.content').text(data.body);
             $(comment_li).find('span.timestamp').text(data.commented_at);
@@ -46,8 +46,7 @@ $(document).on('ready page:change', function() {
             $(comment_li).css('display', 'inherit');
             $(container).append(comment_li);
 
-            $('.delete-comment').unbind('click');
-            bindDeleteComment();
+            $('.delete-comment', comment_li).on('click', bindDeleteComment);
 
         }
 
@@ -58,30 +57,27 @@ $(document).on('ready page:change', function() {
         }
     });
 
-    function bindDeleteComment() {
-        $('.delete-comment').bind('click', function (e) {
-            console.log('Test message');
-            e.preventDefault();
-            var url = $(this).attr('href');
-            var link = $(this);
-            if(confirm('Are you sure?')){
-                $.ajax({
-                    method: "POST",
-                    url: url,
-                    data: {_method: 'DELETE'},
-                    dataType: 'JSON',
-                    success: function () {
-                        link.parents('li.list-unstyled.user-comment').remove();
-                    },
-                    error: function (data) {
-                        var alert = '<div class="alert alert-danger">' +  data.responseJSON.errors.join('<br>') + '</div>';
-                        $(alert).insertBefore('.user-comment');
-                    }
-                });
-            }
-        });
-    }
+    function bindDeleteComment(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        var link = $(this);
+        if(confirm('Are you sure?')){
+            $.ajax({
+                method: "POST",
+                url: url,
+                data: {_method: 'DELETE'},
+                dataType: 'JSON',
+                success: function () {
+                    link.parents('li.list-unstyled.user-comment').remove();
+                },
+                error: function (data) {
+                    var alert = '<div class="alert alert-danger">' +  data.responseJSON.errors.join('<br>') + '</div>';
+                    $(alert).insertBefore('.user-comment');
+                }
+            });
+        }
 
-    bindDeleteComment();
+    }
+    $('.delete-comment').on('click', bindDeleteComment)
 
 });
