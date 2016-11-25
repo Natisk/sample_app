@@ -33,7 +33,7 @@ $(document).on('ready page:change', function() {
     });
 
     function update_likes(data, post_id) {
-        $('.dislike[data-postid="'+post_id+'"]').text(data.dislike_count).addClass('post-disliked').blur();;
+        $('.dislike[data-postid="'+post_id+'"]').text(data.dislike_count).addClass('post-disliked').blur();
         $('.like[data-postid="'+post_id+'"]').text(data.like_count).addClass('post-liked').blur();
     }
 });

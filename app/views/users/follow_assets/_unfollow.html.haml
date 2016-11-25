@@ -1,4 +1,2 @@
-= form_for(current_user.active_relationships.find_by(followed_id: @user.id), |
-  html: { method: :delete },                                                 |
-  remote: true) do |form|                                                    |
-  = form.button '<span class="glyphicon glyphicon-send"> Unfollow</span>'.html_safe, class: 'btn btn-info'
+%button.btn.btn-primary.unfollow{data:{followed_id: current_user.active_relationships.find_by(followed_id: @user.id).id}}
+  %span.glyphicon.glyphicon-send Unfollow
