@@ -22,7 +22,8 @@ gem 'acts_as_votable', '~> 0.10.0'
 
 
 group :development, :test do
-  gem 'faker',                   '>=1.6.6'
+  gem 'faker',                 '>=1.6.6'
+  gem 'rspec',                 '~> 3.5'
 end
 
 group :development do
@@ -34,8 +35,8 @@ group :development do
 end
 
 group :test do
-  gem 'rails-controller-testing', '>=0.1.1'
-  gem 'minitest-reporters',       '>=1.1.9'
-  gem 'guard',                    '>=2.13.0'
-  gem 'guard-minitest',           '>=2.4.4'
+  gem 'cucumber',              '~> 2.4'
+  gem 'factory_girl'
+  gem 'database_cleaner'
+  gem 'capybara'
 end
