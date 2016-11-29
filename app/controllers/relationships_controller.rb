@@ -15,7 +15,7 @@ class RelationshipsController < ApplicationController
     current_user.unfollow(@user)
     respond_to do |format|
       format.html { redirect_to @user }
-      format.json { render json: {followers_count: @user.followers.count, following_count: @user.following.count }, status: :ok }
+      format.json { render json: {followers_count: @user.followers.count, following_count: @user.following.count, relationship_id: @user.id }, status: :ok }
     end
   end
 end

@@ -6,10 +6,11 @@ $(document).on('ready page:change', function() {
             {followed_id: $(this).data().followedId},
             function (data) {
                 update_relationships(data);
-                $('button.follow').addClass('unfollow');
-                $('button.follow').removeClass('follow');
-                $('button.follow').attr('data-followed-id', data.relationship_id);
-                $('span.glyphicon.glyphicon-send').text('Unfollow');
+                $('button.follow').addClass('hide');
+                $('button.unfollow').clone();
+                $('button.unfollow').removeClass('hide');
+                $('button.unfollow').attr('data-followed-id', data.relationship_id);
+                $('button.unfollow').data('followed-id', data.relationship_id);
             },
             'JSON'
         )
@@ -17,6 +18,7 @@ $(document).on('ready page:change', function() {
 
     $('button.unfollow').click(function () {
         followed_id = $(this).data().followedId;
+        console.log(followed_id);
         url = '/relationships/' + followed_id;
         $.ajax({
             method: "POST",
@@ -25,10 +27,9 @@ $(document).on('ready page:change', function() {
             dataType: 'JSON',
             success: function (data) {
                 update_relationships(data);
-                $('button.follow').removeClass('follow');
-                $('button.follow').addClass('unfollow');
-                $('button.follow').data('followed-id', 'Kill me, please');
-                $('span.glyphicon.glyphicon-send').text('Follow');
+                $('button.unfollow').addClass('hide');
+                $('button.follow').removeClass('hide');
+                $('button.follow').attr('data-followed-id', data.relationship_id);
             }
         });
     });
