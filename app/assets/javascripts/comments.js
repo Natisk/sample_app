@@ -23,6 +23,17 @@ $(document).on('ready page:change', function() {
 //        return false
 //    });
 
+    $(".hide-comments").click(function(){
+        $(".user-comment").addClass('hide');
+        $(".see-more").removeClass('hide');
+        $(".hide-comments").addClass('hide');
+        });
+
+    $(".see-more").click(function(){
+        $(".user-comment").removeClass('hide');
+        $(".hide-comments").removeClass('hide');
+        $(".see-more").addClass('hide');
+    });
 
     $('.comment_form').submit(function (e) {
         e.preventDefault();

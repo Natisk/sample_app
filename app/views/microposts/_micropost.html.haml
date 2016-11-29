@@ -17,13 +17,13 @@
       - if micropost.comments.any?
         %h4
           Comments:
-        - if micropost.comments.count > 5
-          %button.see-more
-            Show
-            = pluralize(micropost.comments.count - 5, 'more comments')
+        - # if micropost.comments.count > 5
+        %button.see-more.hide
+          Show comments
+          =# pluralize(micropost.comments.count - 5, 'more comments')
         %ol.comments-list
           = render micropost.comments.sort_by(&:created_at)
         %button.hide-comments
-          Hide
+          Hide comments
       - if can? :create, Comment
         = render partial: 'comments/comment_form', locals: { micropost: micropost }
