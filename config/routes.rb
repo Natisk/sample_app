@@ -1,15 +1,10 @@
 Rails.application.routes.draw do
 
   root   'static_pages#home'
+  get '/about', to: 'static_pages#about'
 
   devise_for :users
   get '/signup',  to: 'devise/registrations#new'
-
-  controller :static_pages do
-    get :help
-    get :about
-    get :contact
-  end
 
   devise_scope :user do
     get    '/login',   to: 'devise/sessions#new'

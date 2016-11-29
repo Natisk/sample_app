@@ -23,7 +23,11 @@ gem 'acts_as_votable', '~> 0.10.0'
 
 group :development, :test do
   gem 'faker',                 '>=1.6.6'
-  gem 'rspec',                 '~> 3.5'
+  gem 'rspec-rails',                 '~> 3.5'
+  gem 'factory_girl_rails'
+  gem 'rails-controller-testing'
+  gem 'cucumber',              '~> 2.4'
+  gem 'capybara'
 end
 
 group :development do
@@ -32,11 +36,10 @@ group :development do
   gem 'spring',                '>=1.7.2'
   gem 'spring-watcher-listen', '>=2.0.0'
   gem 'binding_of_caller'
-end
 
 group :test do
-  gem 'cucumber',              '~> 2.4'
-  gem 'factory_girl'
   gem 'database_cleaner'
-  gem 'capybara'
 end
+
+end
+

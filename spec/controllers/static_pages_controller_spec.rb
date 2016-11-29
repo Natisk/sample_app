@@ -1,16 +1,26 @@
-require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe StaticPagesController, :type => :controller do
-  describe 'GET #home' do
-    it 'responds successfully with an HTTP 200 status code' do
+describe StaticPagesController do
+
+  before :each do
+    sign_in nil
+  end
+
+  context 'GET #home' do
+
+    it 'render #home' do
       get :home
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
+      expect(response).to render_template(:home)
     end
 
-    it 'renders the home template' do
-      get :home
-      expect(response).to render_template('home')
+  end
+
+  context 'GET #about' do
+
+    it 'render #about' do
+      get :about
+      expect(response).to render_template(:about)
     end
+
   end
 end
