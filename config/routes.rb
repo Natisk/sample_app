@@ -12,14 +12,14 @@ Rails.application.routes.draw do
     delete '/logout',  to: 'devise/sessions#destroy'
   end
 
-  resources :users do
+  resources :users, only: [:index, :show, :edit, :update, :destroy] do
     member do
       get :following, :followers
     end
   end
 
   resources :microposts, only: [:create, :destroy, :edit, :update] do
-    resources :comments
+    resources :comments, only: [:create, :destroy]
     post '/like',    to: 'microposts#like_post'
     post '/dislike', to: 'microposts#dislike_post'
   end

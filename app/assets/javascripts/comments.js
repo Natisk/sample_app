@@ -76,7 +76,7 @@ $(document).on('ready page:change', function() {
         function resetForm(form) {
             form.find('input:text, textarea').val('');
             form.parent().find('.alert').remove();
-            form.find('input[type="submit"]').removeAttr('disabled');
+            form.find('input.btn.btn-primary').removeAttr('disabled');
         }
     });
 

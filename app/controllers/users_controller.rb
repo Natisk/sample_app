@@ -2,14 +2,14 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!, only: [:index, :following, :followers, :edit, :update]
 
+  def index
+    @users = User.paginate(page: params[:page] || 1)
+  end
+
   def show
     @user = User.find(params[:id])
     redirect_to root_url and return unless user_signed_in?
     @microposts = @user.microposts.paginate(page: params[:page])
-  end
-
-  def index
-    @users = User.paginate(page: params[:page] || 1)
   end
 
   def edit
