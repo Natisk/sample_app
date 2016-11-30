@@ -1,41 +1,17 @@
-# Ruby on Rails Tutorial sample application
+# Fox on Rails application
 
-This is the sample application for
-[*Ruby on Rails Tutorial:
-Learn Web Development with Rails*](http://www.railstutorial.org/)
-by [Michael Hartl](http://www.michaelhartl.com/).
+This is application created on Ruby on Rails by Maxim Shabelnik. (foxairsoft@live.com)
 
-## License
+## Description
 
-All source code in the [Ruby on Rails Tutorial](http://railstutorial.org/)
-is available jointly under the MIT License and the Beerware License. See
-[LICENSE.md](LICENSE.md) for details.
-
-## Getting started
-
-To get started with the app, clone the repo and then install the needed gems:
-
-```
-$ bundle install --without production
-```
-
-Next, migrate the database:
-
-```
-$ rails db:migrate
-```
-
-Finally, run the test suite to verify that everything is working correctly:
-
-```
-$ rails test
-```
-
-If the test suite passes, you'll be ready to run the app in a local server:
-
-```
-$ rails server
-```
-
-For more information, see the
-[*Ruby on Rails Tutorial* book](http://www.railstutorial.org/book).
+This application is the sample social networking service. 
+Users able to post their microposts with html markup and edit it. 
+Other registered users will be able to post comments under microposts,
+like/dislike it and follow the micropost author. 
+ 
+Users with 'moderator' role can edit and delete microposts and comments. 
+Users with 'admin' role also able to edit users information (including user's role) 
+and delete user accounts. 
+ 
+Application authorization based on [Devise](https://github.com/plataformatec/devise).
+As database used [PostgreSQL](https://www.postgresql.org/).

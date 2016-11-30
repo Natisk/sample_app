@@ -15,27 +15,12 @@ ActiveRecord::Schema.define(version: 20161123143719) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "ckeditor_assets", force: :cascade do |t|
-    t.string   "data_file_name",               null: false
-    t.string   "data_content_type"
-    t.integer  "data_file_size"
-    t.integer  "assetable_id"
-    t.string   "assetable_type",    limit: 30
-    t.string   "type",              limit: 30
-    t.integer  "width"
-    t.integer  "height"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.index ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
-    t.index ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
-  end
-
   create_table "comments", force: :cascade do |t|
+    t.integer  "commenter_id"
     t.text     "body"
     t.integer  "micropost_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "commenter_id"
     t.index ["created_at"], name: "index_comments_on_created_at", using: :btree
     t.index ["micropost_id"], name: "index_comments_on_micropost_id", using: :btree
   end

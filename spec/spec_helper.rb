@@ -18,6 +18,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'rails_helper'
 require 'support/controller_helpers'
+require 'support/controller_macros'
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -26,6 +27,8 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers
   config.include Devise::TestHelpers, type: :view
   config.include ControllerHelpers, :type => :controller
+  config.include ControllerHelpers, :type => :routing
+  config.extend ControllerMacros, type: :controller
 
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
@@ -103,4 +106,16 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  # Database cleaner settings from gem documentation
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
