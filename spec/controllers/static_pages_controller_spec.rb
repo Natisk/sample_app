@@ -26,10 +26,5 @@ describe StaticPagesController do
       get :about
       expect(response).to render_template(:about)
     end
-
-    # it 'routes /about to static_pages#about' do
-    #   expect(get: '/about').to route_to( controller: 'static_pages', action: 'about' )
-    # end
-
   end
 end

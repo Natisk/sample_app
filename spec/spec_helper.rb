@@ -19,16 +19,20 @@
 require 'rails_helper'
 require 'support/controller_helpers'
 require 'support/controller_macros'
+require 'capybara/rspec'
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
 
-  config.include Devise::Test::ControllerHelpers
-  config.include Devise::TestHelpers, type: :view
   config.include ControllerHelpers, :type => :controller
   config.include ControllerHelpers, :type => :routing
   config.extend ControllerMacros, type: :controller
+  Warden.test_mode!
+
+  config.after do
+    Warden.test_reset!
+  end
 
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
