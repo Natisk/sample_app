@@ -22,7 +22,7 @@
           Show comments
           =# pluralize(micropost.comments.count - 5, 'more comments')
         %ol.comments-list
-          = render micropost.comments.sort_by(&:created_at)
+          = render micropost.comments
         %button.hide-comments
           Hide comments
       - if can? :create, Comment
