@@ -1,30 +1,16 @@
 require 'spec_helper'
 
-describe StaticPagesController do
+RSpec.describe StaticPagesController, :type => :controller do
 
-  context 'GET #home' do
+  describe 'GET #home' do
+    before { get :home }
 
-    it 'render #home if sign_in nil' do
-      sign_in nil
-      get :home
-      expect(response).to render_template(:home)
-    end
-
-    login_user
-
-    it 'render #home if sign_in' do
-      get :home
-      expect(response).to render_template(:home)
-    end
-
+    it { should render_template('home') }
   end
 
-  context 'GET #about' do
+  describe 'GET #about' do
+    before { get :about }
 
-    it 'render #about if sign_in nil' do
-      sign_in nil
-      get :about
-      expect(response).to render_template(:about)
-    end
+    it { should render_template('about') }
   end
 end
