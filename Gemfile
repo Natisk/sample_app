@@ -23,7 +23,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 
 group :development, :test do
   gem 'faker',                 '>=1.6.6'
-  gem 'rspec-rails',                 '~> 3.5'
+  gem 'rspec-rails',           '~> 3.5'
   gem 'factory_girl_rails'
   gem 'rails-controller-testing'
   gem 'capybara'
