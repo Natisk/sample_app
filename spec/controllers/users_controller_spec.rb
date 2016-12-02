@@ -2,10 +2,13 @@ require 'spec_helper'
 
 RSpec.describe UsersController, :type => :controller do
   before(:each) do
-    User.new(id: 5, name: 'test', email: 'test@test.com', password: 'qwerty').save!
+    @user = create(:user)
+    @user5 = create(:user, id: 15)
+    @admin = create(:admin)
   end
 
   context 'with user sign_in nil' do
+
     describe 'GET #index' do
       before { get :index }
 
@@ -19,8 +22,10 @@ RSpec.describe UsersController, :type => :controller do
     end
   end
 
-  context 'with user sign_in' do
-    login_user
+  context 'with sign in user' do
+    before(:each) do
+      sign_in @user
+    end
 
     describe 'GET #index' do
       before { get :index }
@@ -29,23 +34,25 @@ RSpec.describe UsersController, :type => :controller do
     end
 
     describe 'GET #show' do
-      before { get :show, params: {id: '5'} }
+      before { get :show, params: {id: '15'} }
 
       it { should render_template('show') }
     end
 
     describe 'GET #edit' do
-      before { get :edit, params: {id: '5'} }
+      before { get :edit, params: {id: '15'} }
 
       it { should redirect_to(users_path) }
     end
   end
 
   context 'with admin sign_in' do
-    login_admin
+    before(:each) do
+      sign_in @admin
+    end
 
     describe 'GET #edit' do
-      before { get :edit, params: {id: '5'} }
+      before { get :edit, params: {id: '15'} }
 
       it { should render_template('edit') }
     end

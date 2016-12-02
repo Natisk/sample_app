@@ -2,9 +2,6 @@ require 'rails_helper'
 
 RSpec.configure do |config|
 
-  config.include ControllerHelpers, :type => :controller
-  config.include ControllerHelpers, :type => :routing
-
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
