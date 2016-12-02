@@ -7,6 +7,9 @@ describe 'the signin process', :js do
 
     scenario 'signs me in' do
       expect(page).to have_content 'Signed in successfully.'
+      click_link('dropdown')
+      click_link 'Profile'
+      expect(page).to have_content @user.email
     end
   end
 
