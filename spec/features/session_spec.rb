@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'the signin process' do
+describe 'the signin process', :js do
 
   context 'sign in' do
     before { user_login }

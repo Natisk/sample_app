@@ -62,7 +62,7 @@ RSpec.configure do |config|
 
   # Database cleaner settings from gem documentation
   config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean_with(:truncation)
   end
 

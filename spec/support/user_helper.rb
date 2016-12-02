@@ -11,6 +11,7 @@
 
     def user_logout
         user_login
+        click_link('dropdown')
         click_link 'Log out'
     end
   end
