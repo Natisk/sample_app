@@ -1,18 +1,10 @@
 FactoryGirl.define do
 
-  sequence :email do |n|
-    "user#{n}@example.com"
-  end
-
-  sequence :confirmed_at do
-    Time.now
-  end
-
   factory :user, aliases: [:commenter] do
     name 'test user'
-    email
+    sequence(:email) { |n| "person#{n}@example.com" }
     password 'qwerty'
-    confirmed_at
+    confirmed_at Time.now
     role 'member'
 
     factory :admin do
@@ -23,13 +15,4 @@ FactoryGirl.define do
       role 'moderator'
     end
   end
-
-   factory :micropost do
-     user
-     content 'Test micropost'
-   end
-
-   # factory :comment do
-   #   body 'Test comment'
-   # end
 end

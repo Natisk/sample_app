@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe User, type: :model do
+
   before :each do
     @user1 = create(:user)
     @user2 = create(:user)
@@ -18,8 +19,11 @@ describe User, type: :model do
   end
 
   it 'is possible to follow other user' do
-    expect(@test_relationships.follower_id).to eq(@user1.id)
-    expect(@test_relationships.followed_id).to eq(@user2.id)
+    expect(@user1.following).to include(@user2)
+    expect(@user1.followers).not_to include(@user2)
+
+    expect(@user2.followers).to include(@user1)
+    expect(@user2.following).not_to include(@user1)
   end
 
   it 'is possible to find active relationships' do
