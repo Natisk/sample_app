@@ -2,6 +2,6 @@ FactoryGirl.define do
 
   factory :micropost do
     user
-    content 'Test micropost'
+    content Faker::Lorem.sentence
   end
 end
