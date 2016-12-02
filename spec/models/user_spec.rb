@@ -1,9 +1,38 @@
 require 'spec_helper'
 
 describe User, type: :model do
+  before :each do
+    @user1 = create(:user)
+    @user2 = create(:user)
+    @micropost1 = create(:micropost, user: @user1)
+    @micropost2 = create(:micropost, user: @user2)
+    @test_relationships = @user1.follow(@user2)
+  end
 
   it 'is valid with valid attributes' do
-    expect(User.new(name: 'test', email: 'test@example.com', password: 'qwerty')).to be_valid
+    expect(@user1).to be_valid
+  end
+
+  it 'is invalid with blank attributes' do
+    expect(User.create( name: '', email: '', password: '', id: '' )).not_to be_valid
+  end
+
+  it 'is possible to follow other user' do
+    expect(@test_relationships.follower_id).to eq(@user1.id)
+    expect(@test_relationships.followed_id).to eq(@user2.id)
+  end
+
+  it 'is possible to find active relationships' do
+    expect(@user1.following?(@user2)).to eq(true)
+  end
+
+  it 'show users feed' do
+    expect(@user1.feed).to include(@micropost1, @micropost2)
+  end
+
+  it 'is possible to unfollow other user' do
+    @user1.unfollow(@user2)
+    expect(@user1.following?(@user2)).to eq(false)
   end
 
   context 'model connection' do

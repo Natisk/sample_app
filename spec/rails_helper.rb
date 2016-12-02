@@ -6,7 +6,6 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'devise'
 require 'support/controller_helpers'
-require 'support/controller_macros'
 require 'capybara/rspec'
 
 ActiveRecord::Migration.maintain_test_schema!
