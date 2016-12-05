@@ -20,13 +20,12 @@ class MicropostsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
     if @micropost.update_attributes(micropost_params)
       flash[:success] = 'Post updated'
-      redirect_to root_url
+      redirect_back fallback_location: :back
     else
       render 'edit'
     end
@@ -36,7 +35,7 @@ class MicropostsController < ApplicationController
     @micropost = Micropost.find_by(id: params[:micropost_id])
     @micropost.liked_by current_user
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_back fallback_location: :back }
       format.json { render json: {like_count: @micropost.get_likes.size, dislike_count: @micropost.get_dislikes.size}, status: :ok }
     end
   end
@@ -45,7 +44,7 @@ class MicropostsController < ApplicationController
     @micropost = Micropost.find_by(id: params[:micropost_id])
     @micropost.downvote_from current_user
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_back fallback_location: :back }
       format.json { render json: {dislike_count: @micropost.get_dislikes.size, like_count: @micropost.get_likes.size}, status: :ok }
     end
   end

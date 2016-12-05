@@ -18,7 +18,7 @@ gem 'haml'
 gem 'html2haml'
 gem 'devise'
 gem 'cancancan',               '~> 1.10'
-gem 'acts_as_votable', '~> 0.10.0'
+gem 'acts_as_votable',         '~> 0.10.0'
 
 
 group :development, :test do
