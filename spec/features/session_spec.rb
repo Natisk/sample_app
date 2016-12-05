@@ -15,7 +15,6 @@ describe 'the signin process', :js do
 
   context 'sign out' do
     before { user_logout }
-
     scenario 'signs me out' do
       expect(page).to have_content 'Signed out successfully.'
     end
