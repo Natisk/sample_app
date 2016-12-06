@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :microposts, only: [:create, :destroy, :edit, :update] do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:index, :create, :destroy]
     post '/like',    to: 'microposts#like_post'
     post '/dislike', to: 'microposts#dislike_post'
   end

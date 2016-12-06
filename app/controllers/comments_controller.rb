@@ -1,6 +1,15 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
 
+  def index
+    micropost = Micropost.find_by(id: params[:micropost_id])
+    @comments = micropost.comments.sort_by(&:created_at)
+    respond_to do |format|
+      format.json { render :index }
+      format.html { redirect_to :back }
+    end
+  end
+
   def create
     micropost = Micropost.find_by(id: params[:micropost_id])
     @comment = micropost.comments.build(comment_params.merge(commenter: current_user))
@@ -10,7 +19,7 @@ class CommentsController < ApplicationController
           flash[:notice] = 'Comment created!'
           redirect_to :back
         end
-        format.json { render @comment }
+        format.json { render :show, status: :created }
       end
     else
       respond_to do |format|
@@ -31,14 +40,14 @@ class CommentsController < ApplicationController
           flash[:success] = 'Comment deleted'
           redirect_to :back
         end
-        format.json { render @comment }
+        format.json { render json: {message: 'Comment deleted' }, status: :no_content }
       end
     else
       format.html do
         flash[:danger] = @comment.errors.full_messages
         redirect_to :back
       end
-      format.json { render json: {errors: @comment.errors.full_messages  }, status: :unprocessable_entity }
+      format.json { render json: {errors: @comment.errors.full_messages  }, status: :not_found }
     end
   end
 

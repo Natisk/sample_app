@@ -18,13 +18,12 @@
       - if micropost.comments.any?
         %h4
           Comments:
-        - # if micropost.comments.count > 5
-        %button.see-more.hide
-          Show comments
-        %button.hide-comments
-          Hide comments
+        - if micropost.comments.size > 5
+          = link_to "Show #{micropost.comments.size - 5} more comments", micropost_comments_path(micropost), class: 'btn btn-primary see-more'
+          %button.hide-comments.hide
+            Hide comments
       %ol.comments-list
         %li.list-unstyled.user-comment
-        = render micropost.comments.sort_by(&:created_at)
+        = render micropost.comments.sort_by(&:created_at).last(5)
       - if can? :create, Comment
         = render partial: 'comments/comment_form', locals: { micropost: micropost }
