@@ -1,11 +1,12 @@
 - provide(:title, 'Abyss')
 .page-header.col-xs-12.col-sm-8.col-sm-offset-2
   %h1 Abyss
-.row.col-xs-12.col-sm-8
-  .text-center
-    = will_paginate @microposts
-  %ol.microposts
-    = render @microposts
-  .text-center
-    = will_paginate @microposts
-  = render 'shared/empty_comment'
+.row
+  .col-xs-12
+    .text-center
+      = will_paginate @microposts
+    %ol.microposts
+      = render @microposts
+    .text-center
+      = will_paginate @microposts
+    = render 'shared/empty_comment'
