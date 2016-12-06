@@ -7,6 +7,7 @@ describe 'micropost', :js do
     let!(:micropost) { FactoryGirl.create(:micropost, user: @user) }
 
     scenario 'like micropost' do
+      sleep(1)
       visit root_path
       find('.like').click
       # click_link 'Like')
@@ -19,6 +20,7 @@ describe 'micropost', :js do
     end
 
     scenario 'dislike micropost' do
+      sleep(1)
       click_link 'Dislike'
       within ('.dislike') do
         expect(page).to have_content '1'

@@ -31,6 +31,7 @@ module UserHelper
 
   def user_logout
     user_login
+    sleep(1)
     find('#dropdown').click
     # click_link 'dropdown'
     click_link 'Log out'

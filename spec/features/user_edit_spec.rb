@@ -15,6 +15,7 @@ describe 'user', :js do
         fill_in 'Current password', with: 'qwerty'
       end
       click_button 'Save changes'
+      sleep(1)
       expect(page).to have_content 'You updated your account successfully'
     end
   end

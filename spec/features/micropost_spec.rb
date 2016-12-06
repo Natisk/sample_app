@@ -37,7 +37,7 @@ describe 'micropost' do
         find('.glyphicon-remove').click
       end
       page.driver.browser.switch_to.alert.accept
-      sleep(2)
+      sleep(1)
       expect(page).to have_content 'Micropost deleted'
       expect(page).not_to have_content micropost
     end
@@ -49,6 +49,7 @@ describe 'micropost' do
     let!(:micropost) { FactoryGirl.create(:micropost, user: user) }
 
     scenario 'edit micropost' do
+      sleep(1)
       visit abyss_path
       within "#micropost-#{micropost.id}" do
         find('.glyphicon-pencil').click
@@ -61,12 +62,12 @@ describe 'micropost' do
 
     scenario 'delete micropost', :js do
       visit abyss_path
-      sleep(3)
+      sleep(1)
       within "#micropost-#{micropost.id}" do
         find('.glyphicon-remove').click
       end
       page.driver.browser.switch_to.alert.accept
-      sleep(2)
+      sleep(1)
       expect(page).to have_content 'Micropost deleted'
       expect(page).not_to have_content micropost
     end
@@ -78,6 +79,7 @@ describe 'micropost' do
     let!(:micropost) { FactoryGirl.create(:micropost, user: user) }
 
     scenario 'edit micropost' do
+      sleep(1)
       visit abyss_path
       within "#micropost-#{micropost.id}" do
         find('.glyphicon-pencil').click
@@ -89,13 +91,14 @@ describe 'micropost' do
     end
 
     scenario 'delete micropost', :js do
+      sleep(1)
       visit abyss_path
-      sleep(3)
+      sleep(1)
       within "#micropost-#{micropost.id}" do
         find('.glyphicon-remove').click
       end
       page.driver.browser.switch_to.alert.accept
-      sleep(2)
+      sleep(1)
       expect(page).to have_content 'Micropost deleted'
       expect(page).not_to have_content micropost
     end
