@@ -34,6 +34,7 @@ class UsersController < ApplicationController
     if current_user.role == 'admin'
       User.find(params[:id]).destroy
       flash[:success] = 'User deleted'
+      redirect_to users_url
     else
       redirect_to users_url
     end

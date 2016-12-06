@@ -7,6 +7,7 @@ describe 'micropost', :js do
     let!(:micropost) { FactoryGirl.create(:micropost, user: @user) }
 
     scenario 'like micropost' do
+      visit root_path
       find('.like').click
       # click_link 'Like')
       within ('.like') do

@@ -1,9 +1,12 @@
 - provide(:title, 'About')
-%h1 About
-%p
-  This is the sample application developed on
-  %a{href: 'http://rubyonrails.org', rel: 'noopener', target: '_blank'} Ruby on Rails.
-  As an authenticated user you are able to create microposts, commented your or some other users micropost,
-  liked or disliked it and follow users. In order to do it please
-  = link_to 'sigh up.', new_user_registration_path
-  In oder to contact me, please send an email to: <strong>foxairsoft@live.com</strong>
+.page-header.col-xs-12.col-sm-8.col-sm-offset-2
+  %h1 About
+.row
+  .col-md-6.col-md-offset-3
+    %p
+      This is the sample application developed on
+      %a{href: 'http://rubyonrails.org', rel: 'noopener', target: '_blank'} Ruby on Rails.
+      As an authenticated user you are able to create microposts, commented your or some other users micropost,
+      liked or disliked it and follow users. In order to do it please
+      = link_to 'sigh up.', new_user_registration_path
+      In oder to contact me, please send an email to: <strong>foxairsoft@live.com</strong>
