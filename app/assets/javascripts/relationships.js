@@ -1,3 +1,4 @@
+// ToDo: Remove useless lines
 $(document).on('ready page:change', function() {
 
     $('button.follow').click(function () {

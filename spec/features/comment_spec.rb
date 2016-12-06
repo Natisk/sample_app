@@ -20,11 +20,9 @@ describe 'comment', :js do
   context 'show/hide buttons' do
     before :each do
       user_login
-      micropost = FactoryGirl.create(:micropost, user: @user)
+      micropost = FactoryGirl.create(:micropost, user: @user) # TODO: may be let?
       FactoryGirl.create(:comment, commenter: @user, micropost_id: micropost.id, body: 'test comment')
-      5.times do |_|
-        FactoryGirl.create(:comment, commenter: @user, micropost_id: micropost.id)
-      end
+      5.times { FactoryGirl.create(:comment, commenter: @user, micropost_id: micropost.id) }
     end
 
     scenario 'add comment to micropost' do
@@ -40,7 +38,7 @@ describe 'comment', :js do
 
   context 'delete comment by admin' do
     before { admin_login }
-    before { @micropost = FactoryGirl.create(:micropost, user: @admin) }
+    before { @micropost = FactoryGirl.create(:micropost, user: @admin) } # TODO: may be let?
     let(:user) { FactoryGirl.create(:user) }
     let!(:comment) { FactoryGirl.create(:comment, commenter: user, micropost_id: @micropost.id) }
 
@@ -59,7 +57,7 @@ describe 'comment', :js do
   context 'delete comment by moderator' do
     before { moderator_login }
     let(:user) { FactoryGirl.create(:user) }
-    before { @micropost = FactoryGirl.create(:micropost, user: @moderator) }
+    before { @micropost = FactoryGirl.create(:micropost, user: @moderator) } # TODO: may be let?
     let!(:comment) { FactoryGirl.create(:comment, commenter: user, micropost_id: @micropost.id) }
 
     scenario 'delete comment' do

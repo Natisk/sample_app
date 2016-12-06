@@ -3,6 +3,7 @@ require 'spec_helper'
 describe User, type: :model do
 
   before :each do
+    # TODO: may be let?
     @user1 = create(:user)
     @user2 = create(:user)
     @micropost1 = create(:micropost, user: @user1)
