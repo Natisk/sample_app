@@ -9,11 +9,32 @@ describe 'comment', :js do
     scenario 'add comment to micropost' do
       fill_in ('comment[body]'), with: 'test comment'
       click_button 'Post comment'
-      sleep(3)
+      sleep(1)
       within all('.user-comment').last do
         expect(page).to have_content @user.name
         expect(page).to have_content 'test comment'
       end
+    end
+  end
+
+  context 'show/hide buttons' do
+    before :each do
+      user_login
+      micropost = FactoryGirl.create(:micropost, user: @user)
+      FactoryGirl.create(:comment, commenter: @user, micropost_id: micropost.id, body: 'test comment')
+      5.times do |_|
+        FactoryGirl.create(:comment, commenter: @user, micropost_id: micropost.id)
+      end
+    end
+
+    scenario 'add comment to micropost' do
+      visit abyss_path
+      sleep(1)
+      find('.see-more').click
+      expect(page).to have_content 'test comment'
+      sleep(1)
+      find('.hide-comments').click
+      expect(page).not_to have_content 'test comment'
     end
   end
 
@@ -25,12 +46,12 @@ describe 'comment', :js do
 
     scenario 'delete comment' do
       visit root_path
-      sleep(2)
+      sleep(1)
       within all('.user-comment').last do
         find('.delete-comment').click
       end
       page.driver.browser.switch_to.alert.accept
-      sleep(2)
+      sleep(1)
       expect(page).not_to have_content comment
     end
   end
@@ -43,12 +64,12 @@ describe 'comment', :js do
 
     scenario 'delete comment' do
       visit root_path
-      sleep(2)
+      sleep(1)
       within all('.user-comment').last do
         find('.delete-comment').click
       end
       page.driver.browser.switch_to.alert.accept
-      sleep(2)
+      sleep(1)
       expect(page).not_to have_content comment
     end
   end

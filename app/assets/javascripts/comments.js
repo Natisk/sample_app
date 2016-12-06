@@ -2,7 +2,6 @@ $(document).on('ready page:change', function() {
 
     $(".see-more").click(function(e){
         e.preventDefault();
-        $(this).parent().find('li.user-comment').removeClass('hide');
         $(this).parent().find(".hide-comments").removeClass('hide');
         $(this).parent().find(".see-more").addClass('hide');
         url = $(this).attr('href');
@@ -22,7 +21,7 @@ $(document).on('ready page:change', function() {
     });
 
     $(".hide-comments").click(function(){
-        $(this).parent().find('li.user-comment').addClass('hide');
+        $(this).parent().find('ol.comments-list').html('');
         $(this).parent().find(".see-more").removeClass('hide');
         $(this).parent().find(".hide-comments").addClass('hide');
         });

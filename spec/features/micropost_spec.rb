@@ -22,6 +22,7 @@ describe 'micropost' do
     let!(:micropost) { FactoryGirl.create(:micropost, user: @user) }
 
     scenario 'edit micropost' do
+      sleep(1)
       visit root_path
       within "#micropost-#{micropost.id}" do
         find('.glyphicon-pencil').click
@@ -51,6 +52,7 @@ describe 'micropost' do
     scenario 'edit micropost' do
       sleep(1)
       visit abyss_path
+      sleep(1)
       within "#micropost-#{micropost.id}" do
         find('.glyphicon-pencil').click
       end
@@ -61,6 +63,7 @@ describe 'micropost' do
     end
 
     scenario 'delete micropost', :js do
+      sleep(1)
       visit abyss_path
       sleep(1)
       within "#micropost-#{micropost.id}" do
