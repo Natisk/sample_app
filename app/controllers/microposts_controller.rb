@@ -25,7 +25,7 @@ class MicropostsController < ApplicationController
   def update
     if @micropost.update_attributes(micropost_params)
       flash[:success] = 'Post updated'
-      redirect_back fallback_location: :back
+      redirect_to "/users/#{current_user.id}"
     else
       render 'edit'
     end
@@ -58,7 +58,7 @@ class MicropostsController < ApplicationController
   private
 
   def micropost_params
-    params.require(:micropost).permit(:content, :picture)
+    params.require(:micropost).permit(:content, :picture, :remove_picture)
   end
 
   def get_micropost

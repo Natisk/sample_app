@@ -8,6 +8,15 @@
       .form-group
         = f.text_area :content, class: 'form-control ckeditor', required: true
         %span.picture
-          = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
+          - if @micropost.picture?
+            %li.list-unstyled
+              Current picture:
+            %li.list-unstyled
+              = image_tag @micropost.picture.url
+            %li.list-unstyled
+              = f.check_box :remove_picture
+              Check it in order to delete current picture
+          - else
+            = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
       .form-group.center
         = f.button 'Save', class: 'btn btn-add-post'
