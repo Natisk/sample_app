@@ -2,11 +2,12 @@ $(document).on('ready page:change', function() {
 
     $(".see-more").click(function(e){
         e.preventDefault();
-        $(this).parent().find(".hide-comments").removeClass('hide');
-        $(this).parent().find(".see-more").addClass('hide');
+        father = $(this).parent();
+        father.find(".hide-comments").removeClass('hide');
+        father.find(".see-more").addClass('hide');
         url = $(this).attr('href');
         micropost = $(this).parent().find('ol.comments-list');
-        $(this).parent().find('ol.comments-list').html(''); // FixME: double selection!!! must be micropost.html('')
+        micropost.html('');
         $.get(
             url,
             function(data) {
@@ -16,16 +17,15 @@ $(document).on('ready page:change', function() {
             },
             'JSON'
         ).fail(function (data) {
-            var alert = '<div class="alert alert-danger">' +  data.responseJSON.errors.join('<br>') + '</div>';
-            // FixME: Alert has been created and not used!
+            alertMessage (data, container);
         });
     });
 
     $(".hide-comments").click(function(){
-        //TODO: may be put  $(this).parent() into var?
-        $(this).parent().find('ol.comments-list').html('');
-        $(this).parent().find(".see-more").removeClass('hide');
-        $(this).parent().find(".hide-comments").addClass('hide');
+        father = $(this).parent();
+        father.find('ol.comments-list').html('');
+        father.find(".see-more").removeClass('hide');
+        father.find(".hide-comments").addClass('hide');
         });
 
     $('.comment_form').submit(function (e) {
@@ -42,8 +42,7 @@ $(document).on('ready page:change', function() {
             'JSON'
         ).fail(function (data) {
             resetForm(form);
-            var alert = '<div class="alert alert-danger">' +  data.responseJSON.errors.join('<br>') + '</div>';
-            $(alert).insertBefore(form);
+            alertMessage (data, form);
         });
 
         function resetForm(form) {
@@ -64,10 +63,7 @@ $(document).on('ready page:change', function() {
         }
         $(comment_li).find('p.content').text(data.body);
         $(comment_li).find('span.timestamp').text(data.commented_at);
-        // TODO: rework into one line
-        $(comment_li).removeAttr('id');
-        $(comment_li).removeClass('hidden');
-        $(comment_li).css('display', 'inherit');
+        $(comment_li).removeAttr('id').removeClass('hidden').css('display', 'inherit');
         $(container).append(comment_li);
 
         $('.delete-comment', comment_li).on('click', bindDeleteComment);
@@ -87,14 +83,19 @@ $(document).on('ready page:change', function() {
                 success: function () {
                     link.parents('li.list-unstyled.user-comment').remove();
                 },
-                error: function (data) {
-                    var alert = '<div class="alert alert-danger">' +  data.responseJSON.errors.join('<br>') + '</div>';
-                    $(alert).insertBefore('.user-comment');
-                }
+                error: (function (data) {
+                    alertMessage (data, form);
+                })
             });
         }
 
     }
+
+    function alertMessage (data, container) {
+        var alert = '<div class="alert alert-danger">' +  data.responseJSON.errors.join('<br>') + '</div>';
+        $(alert).insertBefore(container);
+    }
+
     $('.delete-comment').on('click', bindDeleteComment)
 
 });
