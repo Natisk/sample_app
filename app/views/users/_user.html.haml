@@ -5,8 +5,8 @@
   - if current_user.role == 'admin' || current_user.role == 'moderator'
     %br
     = user.email
-    .btn-group.pull-right{'aria-label' => 'admin_use', role: 'group'}
-      = link_to edit_user_path(user), data: { toggle: 'tooltip' }, 'title' => 'Edit', class: 'btn btn-warning' do
+    .btn-group.pull-right{'aria-label': 'admin_use', role: 'group'}
+      = link_to edit_user_path(user), data: { toggle: 'tooltip' }, title: 'Edit', class: 'btn btn-warning' do
         %span.glyphicon.glyphicon-pencil
-      = link_to user , method: :delete, data: { toggle: 'tooltip', confirm: 'You sure?' }, 'title' => 'Delete', class: 'btn btn-danger' do
+      = link_to user , method: :delete, data: { toggle: 'tooltip', confirm: 'You sure?' }, title: 'Delete', class: 'btn btn-danger' do
         %span.glyphicon.glyphicon-trash

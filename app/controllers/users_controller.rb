@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!, only: [:index, :following, :followers, :edit, :update]
 
+  #TODO: add before filter set_user
+
   def index
     @users = User.paginate(page: params[:page] || 1)
   end

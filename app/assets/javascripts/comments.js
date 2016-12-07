@@ -6,7 +6,7 @@ $(document).on('ready page:change', function() {
         $(this).parent().find(".see-more").addClass('hide');
         url = $(this).attr('href');
         micropost = $(this).parent().find('ol.comments-list');
-        $(this).parent().find('ol.comments-list').html('');
+        $(this).parent().find('ol.comments-list').html(''); // FixME: double selection!!! must be micropost.html('')
         $.get(
             url,
             function(data) {
@@ -17,10 +17,12 @@ $(document).on('ready page:change', function() {
             'JSON'
         ).fail(function (data) {
             var alert = '<div class="alert alert-danger">' +  data.responseJSON.errors.join('<br>') + '</div>';
+            // FixME: Alert has been created and not used!
         });
     });
 
     $(".hide-comments").click(function(){
+        //TODO: may be put  $(this).parent() into var?
         $(this).parent().find('ol.comments-list').html('');
         $(this).parent().find(".see-more").removeClass('hide');
         $(this).parent().find(".hide-comments").addClass('hide');
@@ -62,6 +64,7 @@ $(document).on('ready page:change', function() {
         }
         $(comment_li).find('p.content').text(data.body);
         $(comment_li).find('span.timestamp').text(data.commented_at);
+        // TODO: rework into one line
         $(comment_li).removeAttr('id');
         $(comment_li).removeClass('hidden');
         $(comment_li).css('display', 'inherit');

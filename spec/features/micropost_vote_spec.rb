@@ -6,6 +6,7 @@ describe 'micropost', :js do
     before { user_login }
     let!(:micropost) { FactoryGirl.create(:micropost, user: @user) }
 
+
     scenario 'like micropost' do
       sleep(1)
       visit root_path

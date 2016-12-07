@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Micropost, type: :model do
 
   before :each do
-    @micropost1 = create(:micropost, user: create(:user))
+    @micropost1 = create(:micropost, user: create(:user)) # TODO: may be let?
   end
 
   it 'is valid with valid attributes' do

@@ -61,6 +61,7 @@ class MicropostsController < ApplicationController
     params.require(:micropost).permit(:content, :picture)
   end
 
+  # TODO: Rename this method!
   def micropost
     @micropost = Micropost.find_by(id: params[:id])
   end
