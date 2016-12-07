@@ -2,17 +2,14 @@ require 'spec_helper'
 
 describe User, type: :model do
 
-  before :each do
-    # TODO: may be let?
-    @user1 = create(:user)
-    @user2 = create(:user)
-    @micropost1 = create(:micropost, user: @user1)
-    @micropost2 = create(:micropost, user: @user2)
-    @test_relationships = @user1.follow(@user2)
-  end
+  let(:user1) { FactoryGirl.create(:user) }
+  let(:user2) { FactoryGirl.create(:user) }
+  let(:micropost1) { FactoryGirl.create(:micropost, user: user1) }
+  let(:micropost2) { FactoryGirl.create(:micropost, user: user2) }
+  before { @test_relationships = user1.follow(user2) }
 
   it 'is valid with valid attributes' do
-    expect(@user1).to be_valid
+    expect(user1).to be_valid
   end
 
   it 'is invalid with blank attributes' do
@@ -20,24 +17,24 @@ describe User, type: :model do
   end
 
   it 'is possible to follow other user' do
-    expect(@user1.following).to include(@user2)
-    expect(@user1.followers).not_to include(@user2)
+    expect(user1.following).to include(user2)
+    expect(user1.followers).not_to include(user2)
 
-    expect(@user2.followers).to include(@user1)
-    expect(@user2.following).not_to include(@user1)
+    expect(user2.followers).to include(user1)
+    expect(user2.following).not_to include(user1)
   end
 
   it 'is possible to find active relationships' do
-    expect(@user1.following?(@user2)).to eq(true)
+    expect(user1.following?(user2)).to eq(true)
   end
 
   it 'show users feed' do
-    expect(@user1.feed).to include(@micropost1, @micropost2)
+    expect(user1.feed).to include(micropost1, micropost2)
   end
 
   it 'is possible to unfollow other user' do
-    @user1.unfollow(@user2)
-    expect(@user1.following?(@user2)).to eq(false)
+    user1.unfollow(user2)
+    expect(user1.following?(user2)).to eq(false)
   end
 
   context 'model connection' do
@@ -55,7 +52,7 @@ describe User, type: :model do
     it { should have_db_column(:name).of_type(:string)}
     it { should have_db_column(:email).of_type(:string).with_options(default: '', null: false)}
     it { should have_db_column(:encrypted_password).of_type(:string).with_options(default: '', null: false)}
-    it { should have_db_column(:sign_in_count).of_type(:integer).with_options(:default => 0)}
+    it { should have_db_column(:sign_in_count).of_type(:integer).with_options(default: 0)}
     it { should have_db_column(:role).of_type(:string).with_options(default: 'member')}
   end
 end

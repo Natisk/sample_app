@@ -2,12 +2,10 @@ require 'spec_helper'
 
 describe Micropost, type: :model do
 
-  before :each do
-    @micropost1 = create(:micropost, user: create(:user)) # TODO: may be let?
-  end
+  let(:micropost) {FactoryGirl.create(:micropost, user: create(:user))}
 
   it 'is valid with valid attributes' do
-    expect(@micropost1).to be_valid
+    expect(micropost).to be_valid
   end
 
   context do
