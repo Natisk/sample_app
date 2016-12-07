@@ -1,6 +1,7 @@
 %li
   = gravatar_for(user, 50)
   = link_to user.name, user
+  = ": #{user.role}"
   - if current_user.role == 'admin' || current_user.role == 'moderator'
     %br
     = user.email

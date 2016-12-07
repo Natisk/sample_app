@@ -20,8 +20,8 @@
           Comments:
         - if micropost.comments.size > 5
           = link_to "Show #{micropost.comments.size - 5} more comments", micropost_comments_path(micropost), class: 'btn btn-primary see-more'
-          %button.hide-comments.hide
-            Hide comments
+          %button.btn.btn-primary.hide-comments.hide
+            Hide all comments
       %ol.comments-list
         %li.list-unstyled.user-comment
         = render micropost.comments.sort_by(&:created_at).last(5)
