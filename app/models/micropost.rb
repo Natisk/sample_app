@@ -5,7 +5,7 @@ class Micropost < ApplicationRecord
   mount_uploader :picture, PictureUploader
   validates :user, :content, presence: true
   validate  :picture_size
-
+  acts_as_votable
   self.per_page = 10
 
   private

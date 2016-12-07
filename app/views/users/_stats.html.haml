@@ -5,7 +5,7 @@
     %strong#following.stat
       = @user.following.count
     following
-  %a{:href => "#{followers_user_path(@user)}"}
+  %a{href: "#{followers_user_path(@user)}"}
     %strong#followers.stat
       = @user.followers.count
     followers

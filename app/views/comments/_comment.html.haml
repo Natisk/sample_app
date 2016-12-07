@@ -4,7 +4,7 @@
     Commenter:
     = link_to comment.commenter_name, comment.commenter
     - if can?(:destroy, comment)
-      = link_to '', micropost_comment_path(comment.micropost, comment), data: { toggle: 'tooltip' }, 'title' => 'Delete', class: 'btn glyphicon glyphicon-remove pull-right delete-comment'
+      = link_to '', micropost_comment_path(comment.micropost, comment), data: { toggle: 'tooltip' }, title: 'Delete', class: 'btn glyphicon glyphicon-remove pull-right delete-comment'
   %p.content
     = comment.body
   %span.timestamp

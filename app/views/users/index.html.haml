@@ -4,6 +4,12 @@
 .row
   .col-xs-12
     .text-center
+      .btn-group
+        = link_to 'Admins', '/users?role=admin', class: 'btn btn-default'
+        = link_to 'Moderators', '/users?role=moderator', class: 'btn btn-default'
+        = link_to 'Members', '/users?role=member', class: 'btn btn-default'
+        = link_to 'All users', users_path, method: :get, class: 'btn btn-default'
+    .text-center
       = will_paginate
     %ul.users
       = render @users

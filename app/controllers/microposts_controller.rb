@@ -1,8 +1,8 @@
 class MicropostsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
-  before_action :micropost, only: [:create, :destroy, :edit, :update, :like_post, :dislike_post]
+  before_action :get_micropost, only: [:create, :destroy, :edit, :update]
   before_action :permissions, only: [:destroy, :edit, :update]
-
+  before_action :get_micropost_for_vote, only: [:like_post, :dislike_post]
 
   def index
     @microposts = Micropost.paginate(page: params[:page])
@@ -61,9 +61,12 @@ class MicropostsController < ApplicationController
     params.require(:micropost).permit(:content, :picture)
   end
 
-  # TODO: Rename this method!
-  def micropost
+  def get_micropost
     @micropost = Micropost.find_by(id: params[:id])
+  end
+
+  def get_micropost_for_vote
+    @micropost = Micropost.find_by(id: params[:micropost_id])
   end
 
   def permissions
