@@ -4,15 +4,12 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :following, :followers]
 
   def index
-    if params[:role] == 'admin'
-      users = User.where(role: 'admin')
-    elsif params[:role] == 'moderator'
-      users = User.where(role: 'moderator')
-    elsif params[:role] == 'member'
-      users = User.where(role: 'member')
-    else
-      users = User.all
-    end
+    users =
+        if params[:roles].present?
+          User.where(role: params[:roles])
+        else
+          User.all
+        end
     @users = users.paginate(page: params[:page] || 1)
   end
 

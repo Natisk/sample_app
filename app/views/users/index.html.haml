@@ -4,11 +4,19 @@
 .row
   .col-xs-12
     .text-center
-      .btn-group
-        = link_to 'Admins', '/users?role=admin', class: 'btn btn-default'
-        = link_to 'Moderators', '/users?role=moderator', class: 'btn btn-default'
-        = link_to 'Members', '/users?role=member', class: 'btn btn-default'
-        = link_to 'All users', users_path, method: :get, class: 'btn btn-default'
+      - selected_roles = params[:roles] || []
+      = form_tag( '/users', method: 'get', class: 'form-inline' ) do
+        .form-group
+          = check_box_tag 'roles[]', 'admin', selected_roles.include?('admin')
+          = label_tag 'Admin'
+        .form-group
+          = check_box_tag 'roles[]', 'moderator', selected_roles.include?('moderator')
+          = label_tag 'Moderator'
+        .form-group
+          = check_box_tag 'roles[]', 'member', selected_roles.include?('member')
+          = label_tag 'Member'
+        .form-group
+          = submit_tag 'Filter users', class: 'btn btn-success'
     .text-center
       = will_paginate
     %ul.users
