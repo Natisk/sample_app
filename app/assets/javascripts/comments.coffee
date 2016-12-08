@@ -26,20 +26,20 @@ $ ->
     father.find(".hide-comments").addClass('hide')
 
   $('.comment_form').submit (e) ->
-      e.preventDefault()
-      url = $(this).attr('action')
-      form = $(this)
-      $.post(
-        url,
-        $(this).serialize(),
-        (data) ->
-            resetForm(form)
-            add_comments(data, form.parent().find('ol.comments-list'))
-        , 'JSON'
-      ).fail( (data) ->
+    e.preventDefault()
+    url = $(this).attr('action')
+    form = $(this)
+    $.post(
+      url,
+      $(this).serialize(),
+      (data) ->
         resetForm(form)
-        alertMessage(data, form)
-      )
+        add_comments(data, form.parent().find('ol.comments-list'))
+      , 'JSON'
+    ).fail( (data) ->
+      resetForm(form)
+      alertMessage(data, form)
+    )
 
   resetForm = (form) ->
     form.find('input:text, textarea').val('')
