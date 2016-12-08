@@ -6,15 +6,18 @@
     .text-center
       - selected_roles = params[:roles] || []
       = form_tag( '/users', method: 'get', class: 'form-inline' ) do
-        .form-group
-          = check_box_tag 'roles[]', 'admin', selected_roles.include?('admin')
-          = label_tag 'Admin'
-        .form-group
-          = check_box_tag 'roles[]', 'moderator', selected_roles.include?('moderator')
-          = label_tag 'Moderator'
-        .form-group
-          = check_box_tag 'roles[]', 'member', selected_roles.include?('member')
-          = label_tag 'Member'
+        .checkbox
+          = label_tag do
+            = check_box_tag 'roles[]', 'admin', selected_roles.include?('admin')
+            Admin
+        .checkbox
+          = label_tag do
+            = check_box_tag 'roles[]', 'moderator', selected_roles.include?('moderator')
+            Moderator
+        .checkbox
+          = label_tag do
+            = check_box_tag 'roles[]', 'member', selected_roles.include?('member')
+            Member
         .form-group
           = submit_tag 'Filter users', class: 'btn btn-success'
     .text-center

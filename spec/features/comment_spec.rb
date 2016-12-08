@@ -20,7 +20,7 @@ describe 'comment', :js do
   context 'show/hide buttons' do
     before :each do
       user_login
-      let(:micropost) {FactoryGirl.create(:micropost, user: @user)}
+      micropost = FactoryGirl.create(:micropost, user: @user)
       FactoryGirl.create(:comment, commenter: @user, micropost_id: micropost.id, body: 'test comment')
       5.times { FactoryGirl.create(:comment, commenter: @user, micropost_id: micropost.id) }
     end
@@ -40,7 +40,7 @@ describe 'comment', :js do
     before { admin_login }
     let(:micropost) {FactoryGirl.create(:micropost, user: @admin)}
     let(:user) { FactoryGirl.create(:user) }
-    let!(:comment) { FactoryGirl.create(:comment, commenter: user, micropost_id: @micropost.id) }
+    let!(:comment) { FactoryGirl.create(:comment, commenter: user, micropost_id: micropost.id) }
 
     scenario 'delete comment' do
       visit root_path
@@ -58,7 +58,7 @@ describe 'comment', :js do
     before { moderator_login }
     let(:user) { FactoryGirl.create(:user) }
     let(:micropost) {FactoryGirl.create(:micropost, user: @moderator)}
-    let!(:comment) { FactoryGirl.create(:comment, commenter: user, micropost_id: @micropost.id) }
+    let!(:comment) { FactoryGirl.create(:comment, commenter: user, micropost_id: micropost.id) }
 
     scenario 'delete comment' do
       visit root_path

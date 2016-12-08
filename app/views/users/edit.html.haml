@@ -12,10 +12,10 @@
         = f.label :email, class: 'col-sm-2 control-label'
         .col-sm-10
           = f.email_field :email, required: true, class: 'form-control'
-      .form-group
+      .radio
         - User::ROLES.each do |role|
           .col-sm-10
-            .radio-inline
+            = label_tag do
               = f.radio_button :role, "#{role}"
               #{role}
       .form-group
