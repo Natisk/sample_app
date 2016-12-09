@@ -2,13 +2,20 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def facebook
     @user = User.facebook_omniauth(request.env['omniauth.auth'])
-    if @user.persisted?
+    fail_here
+    if @user.present?
       sign_in_and_redirect @user
       set_flash_message(:notice, :success, kind: 'Facebook') if is_navigational_format?
     else
-      session['devise.facebook_data'] = request.env['omniauth.auth'].except('extra')
       flash[:notice] = 'Current email already was registered'
-      redirect_to new_user_registration_url
+      # flash[:uid] = request.env['omniauth.auth']['extra']['id']
+      # flash[:name] = request.env['omniauth.auth']['extra']['name']
+      # flash[:email] = request.env['omniauth.auth']['extra']['email']
+      redirect_to new_user_registration_url user_info: {uid: request.env['omniauth.auth']['extra']['id'],
+                                            name: request.env['omniauth.auth']['extra']['name'],
+                                            email: request.env['omniauth.auth']['extra']['email']}
+
+      # @user = User.new(params[:user_info])
     end
   end
 
@@ -18,7 +25,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user
       set_flash_message(:notice, :success, kind: 'Twitter') if is_navigational_format?
     else
-      session['devise.twitter_data'] = request.env['omniauth.auth']
       redirect_to new_user_registration_url
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209121925) do
+ActiveRecord::Schema.define(version: 20161209153005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 20161209121925) do
     t.index ["user_id"], name: "index_microposts_on_user_id", using: :btree
   end
 
+  create_table "oauths", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "provider"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_oauths_on_user_id", using: :btree
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -80,9 +89,6 @@ ActiveRecord::Schema.define(version: 20161209121925) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "role",                   default: "member"
-    t.string   "provider"
-    t.string   "facebook_uid"
-    t.string   "twitter_uid"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
@@ -105,4 +111,5 @@ ActiveRecord::Schema.define(version: 20161209121925) do
 
   add_foreign_key "comments", "microposts"
   add_foreign_key "microposts", "users"
+  add_foreign_key "oauths", "users"
 end
