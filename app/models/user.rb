@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable, :omniauthable, :omniauth_providers => [:facebook]
+         :confirmable, :lockable, :omniauthable, :omniauth_providers => [:facebook, :twitter]
   has_many :microposts, dependent: :destroy
   has_many :active_relationships, class_name:  'Relationship',
            foreign_key: :follower_id,
@@ -51,6 +51,8 @@ class User < ApplicationRecord
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      elsif data = session["twitter.facebook_data"] && session["devise.twitter_data"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?
       end
     end

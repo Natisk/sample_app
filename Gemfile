@@ -21,6 +21,7 @@ gem 'cancancan',               '~> 1.10'
 gem 'acts_as_votable',         '~> 0.10.0'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 group :development, :test do
   gem 'faker',                 '>=1.6.6'
