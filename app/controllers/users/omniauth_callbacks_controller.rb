@@ -1,31 +1,34 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  # before_action :set_user, only: [:facebook, :twitter]
 
   def facebook
-    @user = User.facebook_omniauth(request.env['omniauth.auth'])
-    fail_here
+    auth_info = request.env.dig 'omniauth.auth', 'extra', 'raw_info'
+    redirect_to root_path, flash: {error: 'Error from FaceBook!' } and return unless auth_info
+    @user = User.find_user_by_oauth uid: auth_info['id'], provider: 'facebook'
     if @user.present?
       sign_in_and_redirect @user
       set_flash_message(:notice, :success, kind: 'Facebook') if is_navigational_format?
-    else
-      flash[:notice] = 'Current email already was registered'
-      # flash[:uid] = request.env['omniauth.auth']['extra']['id']
-      # flash[:name] = request.env['omniauth.auth']['extra']['name']
-      # flash[:email] = request.env['omniauth.auth']['extra']['email']
-      redirect_to new_user_registration_url user_info: {uid: request.env['omniauth.auth']['extra']['id'],
-                                            name: request.env['omniauth.auth']['extra']['name'],
-                                            email: request.env['omniauth.auth']['extra']['email']}
-
-      # @user = User.new(params[:user_info])
+    else @user = User.find_by(email: auth_info['email'])
+      if @user.present?
+        @user.oauths.create uid: auth_info['id'], provider: 'facebook'
+        sign_in_and_redirect @user
+        set_flash_message(:notice, :success, kind: 'Facebook') if is_navigational_format?
+      else
+        redirect_to new_user_registration_url user_info: {uid: auth_info['id'],
+                                                          provider: 'facebook',
+                                                          name: auth_info['name'],
+                                                          email: auth_info['email']}
+      end
     end
   end
 
   def twitter
-    @user = User.twitter_omniauth(request.env['omniauth.auth'])
-    if @user.persisted?
+    if @user.present?
       sign_in_and_redirect @user
       set_flash_message(:notice, :success, kind: 'Twitter') if is_navigational_format?
     else
-      redirect_to new_user_registration_url
+      redirect_to new_user_registration_url user_info: {uid: request.env['omniauth.auth']['extra']['id'],
+                                                        name: request.env['omniauth.auth']['extra']['name']}
     end
   end
 

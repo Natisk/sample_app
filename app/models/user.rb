@@ -11,8 +11,12 @@ class User < ApplicationRecord
            dependent:   :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-  has_many :oauths, dependent: :destroy
+  has_many :oauths, dependent: :destroy, autosave: true, inverse_of: :user
   has_many :comments, class_name: 'Comment', foreign_key: :commenter_id, dependent: :destroy
+
+  accepts_nested_attributes_for :oauths
+
+
   ROLES = %w(admin moderator member)
 
   # Returns a user's status feed.
@@ -37,22 +41,8 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
-  def self.facebook_omniauth(auth)
-    where(provider: auth.provider, facebook_uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name   # assuming the user model has a name
-      # user.image = auth.info.image # assuming the user model has an image
-      # If you are using confirmable and the provider(s) you use validate emails,
-      # uncomment the line below to skip the confirmation emails.
-      # user.skip_confirmation!
-    end
-  end
-
-  def self.twitter_omniauth(auth)
-    where(provider: auth.provider, twitter_uid: auth.uid).first_or_create do |user|
-      user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name
-    end
+  def self.find_user_by_oauth(uid: nil, provider: nil)
+    return nil unless uid || provider
+    Oauth.find_by(uid: uid, provider: provider)&.user
   end
 end
