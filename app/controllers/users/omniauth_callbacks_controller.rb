@@ -31,7 +31,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, kind: 'Twitter') if is_navigational_format?
     else
       redirect_to new_user_registration_url user_info: {uid: auth_info['id'],
-                                                        provider: 'facebook',
+                                                        provider: 'twitter',
                                                         name: auth_info['name']}
     end
   end
