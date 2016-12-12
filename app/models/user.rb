@@ -43,6 +43,6 @@ class User < ApplicationRecord
 
   def self.find_user_by_oauth(uid: nil, provider: nil)
     return nil unless uid || provider
-    Oauth.find_by(uid: uid, provider: provider)&.user
+    Oauth.find_by(uid: uid, provider: provider).try(:user)
   end
 end
