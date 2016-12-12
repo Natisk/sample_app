@@ -27,4 +27,4 @@
 
 # Ignore uploaded test images.
 /public/uploads
-/config/secure.yml
+/config/secrets.yml
