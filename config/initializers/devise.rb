@@ -249,8 +249,13 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   # config.omniauth :facebook, Rails.application.secrets.FACEBOOK_APP_ID, Rails.application.secrets.FACEBOOK_APP_SECRET
   # config.omniauth :twitter, Rails.application.secrets.TWITTER_APP_ID, Rails.application.secrets.TWITTER_APP_SECRET
-  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET']
-  config.omniauth :twitter, ENV['TWITTER_APP_ID'], ENV['TWITTER_APP_SECRET']
+  if Rails.env.production?
+    config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET']
+    config.omniauth :twitter, ENV['TWITTER_APP_ID'], ENV['TWITTER_APP_SECRET']
+  else
+    config.omniauth :facebook, APP_CONFIG.FACEBOOK_APP_ID, APP_CONFIG.FACEBOOK_APP_SECRET
+    config.omniauth :twitter, APP_CONFIG.TWITTER_APP_ID, APP_CONFIG.TWITTER_APP_SECRET
+  end
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

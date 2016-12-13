@@ -20,11 +20,13 @@
 # Ignore Byebug command history file.
 .byebug_history
 .idea
-/config/database.yml
-# /config/secrets.yml
 
 # Ignore Spring files.
 /spring/*.pid
 
 # Ignore uploaded test images.
 /public/uploads
+
+/config/database.yml
+/config/secure.yml
+
