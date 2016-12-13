@@ -21,7 +21,7 @@
 .byebug_history
 .idea
 /config/database.yml
-/config/secrets.yml
+# /config/secrets.yml
 
 # Ignore Spring files.
 /spring/*.pid
