@@ -3,7 +3,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     if params[:user_info].present?
       build_resource({name: params.dig(:user_info, :name), email: params.dig(:user_info, :email), confirmed_at: params.dig(:user_info, :email) ? Time.now : nil })
-      resource.oauths.build uid: params.dig(:user_info, :uid), provider: params.dig(:user_info, :provider)
+      resource.oauths.build uid: params.dig(:user_info, :uid), provider: params.dig(:user_info, :provider), link: params.dig(:user_info, :link)
     else
       build_resource({})
     end

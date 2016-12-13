@@ -6,9 +6,10 @@
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal' }) do |f|
       = devise_error_messages!
       = f.hidden_field :confirmed_at
-      = f.fields_for :oauths, resource.oauths.build(uid: params.dig(:user_info, :uid), provider: params.dig(:user_info, :provider)) do |oauth_fields|
+      = f.fields_for :oauths, resource.oauths.build(uid: params.dig(:user_info, :uid), provider: params.dig(:user_info, :provider), link: params.dig(:user_info, :link)) do |oauth_fields|
         = oauth_fields.hidden_field :uid
         = oauth_fields.hidden_field :provider
+        = oauth_fields.hidden_field :link
       .form-group
         = f.label :name, class: 'col-sm-2 control-label'
         .col-sm-10
