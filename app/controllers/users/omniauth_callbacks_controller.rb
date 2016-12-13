@@ -1,5 +1,4 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  # before_action :set_user, only: [:facebook, :twitter]
 
   def facebook
     auth_info = request.env.dig 'omniauth.auth', 'extra', 'raw_info'
