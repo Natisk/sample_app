@@ -25,6 +25,6 @@ Rails.application.routes.draw do
   end
   get '/abyss',   to: 'microposts#index'
 
-  resources :relationships,         only: [:destroy]
-  resources :omniauth,              only: [:index, :destroy]
+  resources :relationships,         only: [:create, :destroy]
+  resources :omniauth,              only: [:destroy]
 end
