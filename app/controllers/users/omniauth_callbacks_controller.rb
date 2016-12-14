@@ -22,6 +22,29 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
+  def google_oauth2
+    auth_info = request.env.dig 'omniauth.auth', 'extra', 'raw_info'
+    redirect_to root_path, flash: {error: 'Error from Google!' } and return unless auth_info
+    @user = User.find_user_by_oauth uid: auth_info['sub'], provider: 'google_oauth2'
+    if @user.present?
+      sign_in_and_redirect @user
+      set_flash_message(:notice, :success, kind: 'Google') if is_navigational_format?
+    else @user = User.find_by(email: auth_info['email'])
+    if @user.present?
+      @user.oauths.create uid: auth_info['sub'], provider: 'google_oauth2', link: auth_info['profile']
+      sign_in_and_redirect @user
+      set_flash_message(:notice, :success, kind: 'Google') if is_navigational_format?
+    else
+      redirect_to new_user_registration_url user_info: {uid: auth_info['sub'],
+                                                        provider: 'google_oauth2',
+                                                        name: auth_info['name'],
+                                                        email: auth_info['email'],
+                                                        link: auth_info['profile']}
+    end
+    end
+  end
+
+
   def twitter
     auth_info = request.env.dig 'omniauth.auth', 'extra', 'raw_info'
     link_url = request.env.dig 'omniauth.auth', 'info', 'urls', 'Twitter'

@@ -26,5 +26,5 @@
             - resource_class.omniauth_providers.each do |provider|
               = link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-social btn-#{provider}" do
                 %span{class: "fa fa-#{provider}"}
-                Log in with #{OmniAuth::Utils.camelize(provider)}
+                = provider.to_s == 'google_oauth2' ? 'Log in with Google+' : "Log in with #{provider.capitalize}"
           = render 'devise/shared/links'

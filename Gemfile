@@ -23,6 +23,7 @@ gem 'acts_as_votable',         '~> 0.10.0'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
 gem 'font-awesome-rails'
 
 group :development, :test do

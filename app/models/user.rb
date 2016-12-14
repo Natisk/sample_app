@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable, :omniauthable, :omniauth_providers => [:facebook, :twitter]
+         :confirmable, :lockable, :omniauthable, :omniauth_providers => [:facebook, :twitter, :google_oauth2]
   has_many :microposts, dependent: :destroy
   has_many :active_relationships, class_name:  'Relationship',
            foreign_key: :follower_id,
@@ -15,7 +15,6 @@ class User < ApplicationRecord
   has_many :comments, class_name: 'Comment', foreign_key: :commenter_id, dependent: :destroy
 
   accepts_nested_attributes_for :oauths
-
 
   ROLES = %w(admin moderator member)
 
