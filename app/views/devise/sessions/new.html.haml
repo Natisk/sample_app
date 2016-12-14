@@ -21,8 +21,10 @@
               = f.label :remember_me
       .form-group
         .col-sm-offset-2.col-sm-10
-          = f.submit 'Log in', class: 'btn btn-default'
+          = f.submit 'Log in', class: 'btn btn-success'
           - if devise_mapping.omniauthable?
             - resource_class.omniauth_providers.each do |provider|
-              = link_to "Log in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "btn fa fa-#{provider} btn-#{provider}"
+              = link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-social btn-#{provider}" do
+                %span{class: "fa fa-#{provider}"}
+                Log in with #{OmniAuth::Utils.camelize(provider)}
           = render 'devise/shared/links'

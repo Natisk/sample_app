@@ -40,20 +40,21 @@
       .form-group
         .col-sm-offset-2.col-sm-10
           = f.submit 'Save changes', class: 'btn btn-success'
-        =# button_to 'Cancel account', registration_path(resource_name), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger'
-    .div
+    %div
       - if current_user.oauths.present?
-        .h4= 'Account connected with:'
-        .ol.list-unstyled
+        %h4= 'Account connected with:'
+        %ol.list-unstyled
           - current_user.oauths.each do |item|
-            .li
-              = item.provider.capitalize
-              = link_to 'account', item.link, rel: 'noopener', target: '_blank'
+            %li
+              = link_to item.link, rel: 'noopener', target: '_blank', class: "btn btn-social btn-#{item.provider}" do
+                %span{class: "fa fa-#{item.provider}"}
+                #{item.provider.capitalize} account
               = link_to '', "/omniauth/#{item.id}", data: { confirm: 'Are you sure?', toggle: 'tooltip' }, title: 'Unlink?', method: :delete, class: 'btn glyphicon glyphicon-remove'
-      .ol.list-unstyled
-        .li
-          - if current_user.oauths.find_by(provider: 'facebook').nil?
-            = link_to 'Connect account with Facebook', '/users/auth/facebook', class: 'btn fa fa-facebook btn-facebook'
-        .li
-          - if current_user.oauths.find_by(provider: 'twitter').nil?
-            = link_to 'Connect account with Twitter', '/users/auth/twitter', class: 'btn fa fa-twitter btn-twitter'
+      %hr.ol
+        - if current_user.oauths.size < PROVIDERS.size
+          %h4= 'You can connect your account with:'
+          - (PROVIDERS - current_user.oauths.pluck(:provider)).each do |provider|
+            %li.list-unstyled
+              = link_to "/users/auth/#{provider}", class: "btn btn-social btn-#{provider}" do
+                %span{class: "fa fa-#{provider}"}
+                #{provider.capitalize}

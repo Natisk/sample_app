@@ -6,10 +6,11 @@
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal' }) do |f|
       = devise_error_messages!
       = f.hidden_field :confirmed_at
-      = f.fields_for :oauths, resource.oauths.build(uid: params.dig(:user_info, :uid), provider: params.dig(:user_info, :provider), link: params.dig(:user_info, :link)) do |oauth_fields|
-        = oauth_fields.hidden_field :uid
-        = oauth_fields.hidden_field :provider
-        = oauth_fields.hidden_field :link
+      - if params[:user_info].present?
+        = f.fields_for :oauths, resource.oauths.build(uid: params.dig(:user_info, :uid), provider: params.dig(:user_info, :provider), link: params.dig(:user_info, :link)) do |oauth_fields|
+          = oauth_fields.hidden_field :uid
+          = oauth_fields.hidden_field :provider
+          = oauth_fields.hidden_field :link
       .form-group
         = f.label :name, class: 'col-sm-2 control-label'
         .col-sm-10
@@ -32,8 +33,10 @@
           = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control'
       .form-group
         .col-sm-offset-2.col-sm-10
-          = f.submit 'Sign up', class: 'btn btn-default'
+          = f.submit 'Sign up', class: 'btn btn-success'
           - if devise_mapping.omniauthable?
             - resource_class.omniauth_providers.each do |provider|
-              = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "btn fa fa-#{provider} btn-#{provider}"
+              = link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-social btn-#{provider}" do
+                %span{class: "fa fa-#{provider}"}
+                Sign in with #{OmniAuth::Utils.camelize(provider)}
             = render 'devise/shared/links'

@@ -1,0 +1,1 @@
+PROVIDERS = %w[facebook twitter]
