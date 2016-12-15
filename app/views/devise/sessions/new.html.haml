@@ -1,8 +1,8 @@
 - provide(:title, 'Log in')
-.page-header.col-xs-12.col-sm-8.col-sm-offset-2
+.page-header.col-xs-12.col-md-8.col-sm-8.col-sm-offset-2
   %h1 Log in
 .row
-  .col-md-6.col-md-offset-3
+  .col-xs-12.col-md-8.col-sm-8.col-sm-offset-2
     = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' }) do |f|
       = devise_error_messages!
       .form-group
@@ -24,7 +24,8 @@
           = f.submit 'Log in', class: 'btn btn-success'
           - if devise_mapping.omniauthable?
             - resource_class.omniauth_providers.each do |provider|
-              = link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-social btn-#{provider}" do
-                %span{class: "fa fa-#{provider}"}
-                = provider.to_s == 'google_oauth2' ? 'Log in with Google+' : "Log in with #{provider.capitalize}"
+              %li.list-unstyled
+                = link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-social btn-#{provider}" do
+                  %span{class: "fa fa-#{provider}"}
+                  = "Log in with #{provider.capitalize}".sub('Google_oauth2', 'Google+')
           = render 'devise/shared/links'

@@ -1,8 +1,8 @@
 - provide(:title, 'All users')
-.page-header.col-xs-12.col-sm-8.col-sm-offset-2
+.page-header.col-xs-16.col-sm-8.col-md-8.col-sm-offset-2
   %h1 All users
 .row
-  .col-xs-12
+  .col-xs-12.col-sm-8.col-md-8.col-sm-offset-2
     .text-center
       - selected_roles = params[:roles] || []
       = form_tag( '/users', method: 'get', class: 'form-inline' ) do

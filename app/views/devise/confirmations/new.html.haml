@@ -1,8 +1,8 @@
 - provide(:title, 'Resend confirmation instructions')
-.page-header.col-xs-12.col-sm-8.col-sm-offset-2
+.page-header.col-xs-12.col-md-8.col-sm-8.col-sm-offset-2
   %h1 Resend confirmation instructions
 .row
-  .col-md-6.col-md-offset-3
+  .col-xs-12.col-md-8.col-sm-8.col-sm-offset-2
     = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { class: 'form-horizontal' }, method: :post ) do |f|
       = 'devise_error_messages!'
       .form-group

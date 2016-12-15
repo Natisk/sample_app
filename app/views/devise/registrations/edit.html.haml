@@ -1,8 +1,8 @@
 - provide(:title, 'Edit user')
-.page-header.col-xs-12.col-sm-8.col-sm-offset-2
+.page-header.col-xs-12.col-md-8.col-sm-8.col-sm-offset-2
   %h1 Edit profile
 .row
-  .col-md-6.col-md-offset-3
+  .col-xs-12.col-md-8.col-sm-8.col-sm-offset-2
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal' }, method: :put ) do |f|
       = devise_error_messages!
       .form-group
@@ -48,13 +48,13 @@
             %li
               = link_to item.link, rel: 'noopener', target: '_blank', class: "btn btn-social btn-#{item.provider}" do
                 %span{class: "fa fa-#{item.provider}"}
-                #{item.provider.capitalize} account
+                = "#{item.provider.capitalize}".sub('Google_oauth2', 'Google+') + ' account'
               = link_to '', "/omniauth/#{item.id}", data: { confirm: 'Are you sure?', toggle: 'tooltip' }, title: 'Unlink?', method: :delete, class: 'btn glyphicon glyphicon-remove'
-      %hr.ol
+      %hr
         - if current_user.oauths.size < PROVIDERS.size
           %h4= 'You can connect your account with:'
           - (PROVIDERS - current_user.oauths.pluck(:provider)).each do |provider|
             %li.list-unstyled
               = link_to "/users/auth/#{provider}", class: "btn btn-social btn-#{provider}" do
                 %span{class: "fa fa-#{provider}"}
-                #{provider.capitalize}
+                = "#{provider.capitalize}".sub('Google_oauth2', 'Google+')
