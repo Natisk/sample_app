@@ -43,9 +43,9 @@
     %div
       - if current_user.oauths.present?
         %h4= 'Account connected with:'
-        %ol.list-unstyled
+        %ol
           - current_user.oauths.each do |item|
-            %li
+            %li.list-unstyled
               = link_to item.link, rel: 'noopener', target: '_blank', class: "btn btn-social btn-#{item.provider}" do
                 %span{class: "fa fa-#{item.provider}"}
                 = "#{item.provider.capitalize}".sub('Google_oauth2', 'Google+') + ' account'

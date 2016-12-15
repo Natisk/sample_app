@@ -1,1 +1,1 @@
-PROVIDERS = %w[facebook twitter google_oauth2]
+PROVIDERS = %w[facebook twitter google_oauth2 vk]
