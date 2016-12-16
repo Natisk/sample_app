@@ -7,6 +7,6 @@ $ ->
     FB.ui(
       method: 'feed'
       link: 'http://secret-gorge-27979.herokuapp.com/abyss'
-      img: img_url
+      img: 'https://secret-gorge-27979.herokuapp.com/' + img_url
       description: info_name + ' posted:' + info_content
     )
