@@ -1,11 +1,10 @@
-<div id="vk_api_transport"></div>
-<script type="text/javascript">
+%div{id: 'vk_api_transport'}
+:javascript
   window.vkAsyncInit = function() {
     VK.init({
       apiId: 5777832
     });
   };
-
   setTimeout(function() {
     var el = document.createElement("script");
     el.type = "text/javascript";
@@ -13,4 +12,3 @@
     el.async = true;
     document.getElementById("vk_api_transport").appendChild(el);
   }, 0);
-</script>

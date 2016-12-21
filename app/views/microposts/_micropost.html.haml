@@ -19,8 +19,9 @@
         %span{class: 'fa fa-facebook'}
         Share to Facebook
       %button.vk-share-btn.btn.btn-social.btn-xs.share-btn.btn-vk
-        %span{class: 'fa fa-facebook'}
+        %span{class: 'fa fa-vk'}
         Share to VK
+      %g:plus{action: 'share', annotation: 'none', href: 'http://secret-gorge-27979.herokuapp.com'}
       = link_to '', "https://twitter.com/intent/tweet?text=#{micropost.content}posted%20by%20#{micropost.user.name}%20on&url=https://secret-gorge-27979.herokuapp.com", class: 'btn btn-social btn-twitter twitter-share-button'
     %div.comments
       - if micropost.comments.any?
