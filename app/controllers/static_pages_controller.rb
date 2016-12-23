@@ -9,4 +9,7 @@ class StaticPagesController < ApplicationController
 
   def about
   end
+
+  def robot
+  end
 end

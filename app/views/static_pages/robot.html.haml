@@ -1,0 +1,27 @@
+.page-header.col-xs-16.col-sm-8.col-md-8.col-sm-offset-2
+  %h1 Robot
+.row
+  .col-xs-12.col-sm-8.col-md-8.col-sm-offset-2
+    %div.init-div
+      %input{type: 'number', class: 'x-table'}
+        Enter x
+      %input{type: 'number', class: 'y-table'}
+        Enter y
+      %button.init-btn
+        Init robot
+    %div.place-div
+      %input{type: 'number', class: 'x-place'}
+        Enter robots position x
+      %input{type: 'number', class: 'y-place'}
+        Enter robots position y
+      %input{type: 'textarea', class: 'f-place'}
+        Enter robots direction
+      %button.place-btn.disabled
+        Place
+    %div.movement
+      %button.left-btn.disabled
+        Left
+      %button.right-btn.disabled
+        Right
+      %button.move-btn.disabled
+        Move
