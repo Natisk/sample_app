@@ -2,8 +2,8 @@ class Robot
   DIRECTION = ['NORTH', 'EAST', 'SOUTH', 'WEST']
 
   place: (x, y, f) =>
-    @row = x
-    @col = y
+    @row = parseInt(x)
+    @col = parseInt(y)
     if DIRECTION.includes(f)
       @direction = f
     else
@@ -40,8 +40,8 @@ class Robot
 class Table
 
   constructor: (rows = 5, cols = 6) ->
-    @max_x = rows
-    @max_y = cols
+    @max_x = rows - 1
+    @max_y = cols - 1
     @min_x = @min_y = 0
 
   fadein: (x, y) =>
@@ -91,22 +91,53 @@ $ ->
   $('.init-btn').click ->
     x = $('.x-table').val()
     y = $('.y-table').val()
-    console.log(window.robot1 = new Interface(x, y))
+    $('.x-place').attr('max', x)
+    $('.y-place').attr('max', y)
+    width = 0
+    height = 0
+    numberOfCell = 0
+    table = $(".table-wrapper")
+    cell = $(".table-cell")
+    intoContentRow = "<tr class='example'></tr>"
+    intoContentCell = "<td class='table-cell'></td>"
+    i = 0
+    j = 0
+    for i in [0...x*y]
+      while i < y
+        table.append(intoContentRow)
+        i++
+      while j < x
+        $('.table-wrapper').find(".example").append(intoContentCell)
+        j++
+    window.robot1 = new Interface(x, y)
     $('.place-form').removeClass('disabled hide')
     $('.init-form').hide()
     $('.place-btn').click =>
-      x = $('.x-place').val()
-      y = $('.y-place').val()
+      x = $('.x-place').val() - 1
+      y = $('.y-place').val() - 1
       f = $('.f-place').val()
+      robot_place = document.getElementById("myTable").rows[x].cells.item(y)
+      $(robot_place).append('<img src="/assets/Robot.png" class="Robot"></p>')
+      $('.Robot').addClass(f)
       $('.movement').removeClass('disabled hide')
       $('.place-form').hide()
-      console.log(window.robot1.place(x,y,f))
+      window.robot1.place(x,y,f)
     $('.left-btn').click =>
-      window.robot1.left()
-      console.log(window.robot1.report())
-    $('.right-btn').click =>
+      @robot_pos = window.robot1.robot.report()
+      $('.Robot').removeClass(@robot_pos.f)
       window.robot1.right()
-      console.log(window.robot1.report())
+      @robot_pos = window.robot1.robot.report()
+      $('.Robot').addClass(@robot_pos.f)
+    $('.right-btn').click =>
+      @robot_pos = window.robot1.robot.report()
+      $('.Robot').removeClass(@robot_pos.f)
+      window.robot1.left()
+      @robot_pos = window.robot1.robot.report()
+      $('.Robot').addClass(@robot_pos.f)
     $('.move-btn').click =>
       window.robot1.move()
-      console.log(window.robot1.report())
+      $('.Robot').remove()
+      @robot_pos = window.robot1.robot.report()
+      robot_current_place = document.getElementById("myTable").rows[@robot_pos.y].cells.item(@robot_pos.x)
+      $(robot_current_place).append('<img src="/assets/Robot.png" class="Robot"></p>')
+      $('.Robot').addClass(@robot_pos.f)

@@ -3,7 +3,7 @@
 .row
   .col-xs-12.col-sm-8.col-md-8.col-sm-offset-2
     %form-horizontal.init-form
-      %div.form-group
+      .form-group
         %label
           Enter x:
           %input{type: 'number', class: 'x-table'}
@@ -16,25 +16,27 @@
       %div.form-group
         %label
           Enter robots position x:
-          %input{type: 'number', class: 'x-place'}
+          %input{type: 'number', class: 'x-place', min: 1}
         %label
           Enter robots position y:
-          %input{type: 'number', class: 'y-place'}
+          %input{type: 'number', class: 'y-place', min: 1}
         %select{name: 'direction', class: 'f-place form-control'}
-          %option{value: 'NORTH'}
-            North
           %option{value: 'EAST'}
+            North
+          %option{value: 'NORTH'}
             East
-          %option{value: 'SOUTH'}
-            South
           %option{value: 'WEST'}
+            South
+          %option{value: 'SOUTH'}
             West
         %button.place-btn
           Place
-    %div.movement.disabled.hide
+    %div.movement.disabled.hide.center
       %button.left-btn
         Left
       %button.right-btn
         Right
       %button.move-btn
         Move
+    %div.col-xs-12.col-sm-8.col-md-8.col-sm-offset-4
+      %table{id: 'myTable', class: 'table-wrapper center'}

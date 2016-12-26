@@ -1,0 +1,63 @@
+.table-wrapper{
+  display: table;
+  margin: 0 auto;
+  transform: rotate(-90deg);
+  font-family: "Verdana", sans-serif;
+}
+.table-cell{
+  margin: 0 auto;
+  display: table-cell;
+  border: 1px solid #fff;
+  border-right: none;
+  border-bottom: none;
+  height: 80px;
+  width: auto;
+  min-width: 80px;
+  vertical-align: middle;
+  text-align: center;
+  background: #c4c4c4;
+}
+.table-cell:last-child{
+  border-right: 1px solid #fff;
+}
+.table-cell .row:last-child .table-cell {
+  border-bottom: 1px solid #fff;
+}
+.marker{
+  display: inline-block;
+}
+.marker .first-line, .marker .second-line{
+  width: 2px;
+  height: 20px;
+  max-height: 40%;
+  background: darkslateblue;
+  display: inline-block;
+}
+.first-line{
+  -moz-transform: rotate(45deg) translate(4px);
+  -webkit-transform: rotate(45deg) translate(4px);
+  -o-transform: rotate(45deg) translate(4px);
+  -ms-transform: rotate(45deg) translate(4px);
+  transform: rotate(45deg) translate(4px);
+}
+.second-line{
+  -moz-transform: rotate(-45deg) translate(-4px);
+  -webkit-transform: rotate(-45deg) translate(-4px);
+  -o-transform: rotate(-45deg) translate(-4px);
+  -ms-transform: rotate(-45deg) translate(-4px);
+  transform: rotate(-45deg) translate(-4px);
+}
+
+
+.WEST
+{
+  transform: rotate(-90deg);
+}
+.NORTH
+{
+  transform: rotate(180deg);
+}
+.EAST
+{
+  transform: rotate(90deg);
+}
