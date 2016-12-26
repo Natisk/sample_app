@@ -92,12 +92,14 @@ $ ->
     x = $('.x-table').val()
     y = $('.y-table').val()
     console.log(window.robot1 = new Interface(x, y))
-    $('.place-btn').removeClass('disabled')
+    $('.place-form').removeClass('disabled hide')
+    $('.init-form').hide()
     $('.place-btn').click =>
       x = $('.x-place').val()
       y = $('.y-place').val()
       f = $('.f-place').val()
-      $('.left-btn, .right-btn, .move-btn').removeClass('disabled')
+      $('.movement').removeClass('disabled hide')
+      $('.place-form').hide()
       console.log(window.robot1.place(x,y,f))
     $('.left-btn').click =>
       window.robot1.left()

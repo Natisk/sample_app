@@ -2,26 +2,39 @@
   %h1 Robot
 .row
   .col-xs-12.col-sm-8.col-md-8.col-sm-offset-2
-    %div.init-div
-      %input{type: 'number', class: 'x-table'}
-        Enter x
-      %input{type: 'number', class: 'y-table'}
-        Enter y
-      %button.init-btn
-        Init robot
-    %div.place-div
-      %input{type: 'number', class: 'x-place'}
-        Enter robots position x
-      %input{type: 'number', class: 'y-place'}
-        Enter robots position y
-      %input{type: 'textarea', class: 'f-place'}
-        Enter robots direction
-      %button.place-btn.disabled
-        Place
-    %div.movement
-      %button.left-btn.disabled
+    %form-horizontal.init-form
+      %div.form-group
+        %label
+          Enter x:
+          %input{type: 'number', class: 'x-table'}
+        %label
+          Enter y:
+          %input{type: 'number', class: 'y-table'}
+        %button.init-btn
+          Init robot
+    %form-horizontal.place-form.disabled.hide
+      %div.form-group
+        %label
+          Enter robots position x:
+          %input{type: 'number', class: 'x-place'}
+        %label
+          Enter robots position y:
+          %input{type: 'number', class: 'y-place'}
+        %select{name: 'direction', class: 'f-place form-control'}
+          %option{value: 'NORTH'}
+            North
+          %option{value: 'EAST'}
+            East
+          %option{value: 'SOUTH'}
+            South
+          %option{value: 'WEST'}
+            West
+        %button.place-btn
+          Place
+    %div.movement.disabled.hide
+      %button.left-btn
         Left
-      %button.right-btn.disabled
+      %button.right-btn
         Right
-      %button.move-btn.disabled
+      %button.move-btn
         Move
