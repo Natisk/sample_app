@@ -132,19 +132,17 @@ $ ->
       else
         window.alert('Select another place')
       $('.left-btn').click =>
-        robot_pos = window.robot1.robot.report()
-        $('.Robot').removeClass(robot_pos.f)
+        robot_pos_old = window.robot1.robot.report()
         window.robot1.right()
-        robot_pos = window.robot1.robot.report()
-        $('.Robot').addClass(robot_pos.f)
-        robotLog(robot_pos)
+        robot_pos_new = window.robot1.robot.report()
+        $('.Robot').removeClass(robot_pos_old.f).addClass(robot_pos_new.f)
+        robotLog(robot_pos_new)
       $('.right-btn').click =>
-        robot_pos = window.robot1.robot.report()
-        $('.Robot').removeClass(robot_pos.f)
+        robot_pos_old = window.robot1.robot.report()
         window.robot1.left()
-        robot_pos = window.robot1.robot.report()
-        $('.Robot').addClass(robot_pos.f)
-        robotLog(robot_pos)
+        robot_pos_new = window.robot1.robot.report()
+        $('.Robot').removeClass(robot_pos_old.f).addClass(robot_pos_new.f)
+        robotLog(robot_pos_new)
       $('.move-btn').click =>
         if window.robot1.move() is "Error: move out of the table"
           val = $('.robot-log').val()
