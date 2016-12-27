@@ -88,23 +88,24 @@ class Interface
     !(typeof position.x is 'undefined' or typeof position.x is 'null' or typeof position.y is 'undefined' or typeof position.y is 'null')
 
 $ ->
+  $('.robot-log').val('Let`s go!')
   $('.init-btn').click ->
-    table_x = $('.x-table').val()
-    table_y = $('.y-table').val()
+    table_y = $('.x-table').val()
+    if table_y <= 1
+      table_y = 5
+    table_x = $('.y-table').val()
+    if table_x <= 1
+      table_x = 6
     place_x = $('.x-place')
     place_y = $('.y-place')
     place_x.attr('max', table_x)
     place_y.attr('max', table_y)
-    width = 0
-    height = 0
-    numberOfCell = 0
+    width = height = numberOfCell = i = j = 0
     table = $(".table-wrapper")
     cell = $(".table-cell")
     intoContentRow = "<tr class='table-row'></tr>"
     intoContentCell = "<td class='table-cell'></td>"
-    robotContent = '<img src="/assets/Robot.png" class="Robot"></p>'
-    i = 0
-    j = 0
+    robotContent = '<img class="Robot">'
     for i in [0...table_x*table_y]
       while i < table_y
         table.append(intoContentRow)
@@ -120,12 +121,14 @@ $ ->
       y = place_y.val() - 1
       f = $('.f-place').val()
       if window.robot1.table.fadein(x, y) is true
+        window.robot1.place(x,y,f)
         robot_place = document.getElementById("myTable").rows[y].cells.item(x)
         $(robot_place).append(robotContent)
         $('.Robot').addClass(f)
-        window.robot1.place(x,y,f)
         $('.movement').removeClass('disabled hide')
         $('.place-form').hide()
+        robot_pos = window.robot1.robot.report()
+        robotLog(robot_pos)
       else
         window.alert('Select another place')
       $('.left-btn').click =>
@@ -134,16 +137,34 @@ $ ->
         window.robot1.right()
         robot_pos = window.robot1.robot.report()
         $('.Robot').addClass(robot_pos.f)
+        robotLog(robot_pos)
       $('.right-btn').click =>
         robot_pos = window.robot1.robot.report()
         $('.Robot').removeClass(robot_pos.f)
         window.robot1.left()
         robot_pos = window.robot1.robot.report()
         $('.Robot').addClass(robot_pos.f)
+        robotLog(robot_pos)
       $('.move-btn').click =>
-        $('.Robot').remove()
-        window.robot1.move()
-        robot_pos = window.robot1.robot.report()
-        robot_current_place = document.getElementById("myTable").rows[robot_pos.y].cells.item(robot_pos.x)
-        $(robot_current_place).append(robotContent)
-        $('.Robot').addClass(robot_pos.f)
+        if window.robot1.move() is "Error: move out of the table"
+          val = $('.robot-log').val()
+          $('.robot-log').val("Are you tring to kill Bender? Change direction, bro. <= " + val)
+        else
+          $('.Robot').remove()
+          robot_pos = window.robot1.robot.report()
+          robot_current_place = document.getElementById("myTable").rows[robot_pos.y].cells.item(robot_pos.x)
+          $(robot_current_place).append(robotContent)
+          $('.Robot').addClass(robot_pos.f)
+          robotLog(robot_pos)
+
+robotLog = (robot_pos)->
+  val = $('.robot-log').val()
+  switch robot_pos.f
+    when 'NORTH' then robot_pos.f = 'EAST'
+    when 'WEST' then robot_pos.f = 'SOUTH'
+    when 'SOUTH' then robot_pos.f = 'WEST'
+    when 'EAST' then robot_pos.f = 'NORTH'
+  $('.robot-log').val("(Robot x:#{robot_pos.y}, y:#{robot_pos.x}, direction:#{robot_pos.f}) <= " + val)
+
+  $('.clean-log').click ->
+    $('.robot-log').val('')

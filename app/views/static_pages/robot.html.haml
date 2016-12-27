@@ -1,19 +1,24 @@
 .page-header.col-xs-16.col-sm-8.col-md-8.col-sm-offset-2
   %h1 Robot
 .row
-  .col-xs-12.col-sm-8.col-md-8.col-sm-offset-2
+  %div.col-md-4
+    .robots-log-div
+      %textarea.robot-log.form-control{rows: 5, disabled: 'disabled', wrap: 'soft'}
+      %button.btn.btn-default.clean-log
+        Clean log
     %form-horizontal.init-form
+      Please note, if you will try to set X or Y lower or equal to 1, it will be submitted as 6 and 5.
       .form-group
         %label
           Enter x:
-          %input{type: 'number', class: 'x-table'}
+          %input{type: 'number', class: 'x-table', min: 2}
         %label
           Enter y:
-          %input{type: 'number', class: 'y-table'}
+          %input{type: 'number', class: 'y-table', min: 2}
         %button.init-btn
           Init robot
     %form-horizontal.place-form.disabled.hide
-      %div.form-group
+      .form-group
         %label
           Enter robots position x:
           %input{type: 'number', class: 'x-place', min: 1}
@@ -38,6 +43,5 @@
         Right
       %button.move-btn
         Move
-    %div.col-xs-12.col-sm-8.col-md-8.col-sm-offset-4
-      %div.center
-        %table{id: 'myTable', class: 'table-wrapper'}
+  %div.col-md-8
+    %table{id: 'myTable', class: 'table-wrapper'}
