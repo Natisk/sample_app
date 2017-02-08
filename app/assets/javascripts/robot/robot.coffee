@@ -60,6 +60,7 @@ class Table
     {x: @max_x, y: @max_y}
 
 
+
 class Interface
 
   robotContent = '<img class="Robot">'
@@ -133,6 +134,9 @@ class Interface
 
   robotPlacedOnTable = (position)=>
     !(typeof position.x is 'undefined' or typeof position.x is 'null' or typeof position.y is 'undefined' or typeof position.y is 'null')
+
+
+
 
 $ ->
   $('.robot-log').val('')
