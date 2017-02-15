@@ -32,7 +32,6 @@ class MicropostsController < ApplicationController
   end
 
   def like_post
-    @micropost = Micropost.find_by(id: params[:micropost_id])
     @micropost.liked_by current_user
     respond_to do |format|
       format.html { redirect_back fallback_location: :back }
@@ -41,7 +40,6 @@ class MicropostsController < ApplicationController
   end
 
   def dislike_post
-    @micropost = Micropost.find_by(id: params[:micropost_id])
     @micropost.downvote_from current_user
     respond_to do |format|
       format.html { redirect_back fallback_location: :back }

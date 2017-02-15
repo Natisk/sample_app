@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :get_micropost, only: [:index, :create]
 
   def index
-    micropost = Micropost.find_by(id: params[:micropost_id])
-    @comments = micropost.comments.sort_by(&:created_at)
+    @comments = @micropost.comments.sort_by(&:created_at)
     respond_to do |format|
       format.json { render :index }
       format.html { redirect_to :back }
@@ -11,8 +11,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    micropost = Micropost.find_by(id: params[:micropost_id])
-    @comment = micropost.comments.build(comment_params.merge(commenter: current_user))
+    @comment = @micropost.comments.build(comment_params.merge(commenter: current_user))
     if @comment.save
       respond_to do |format|
         format.html do
@@ -52,6 +51,11 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def get_micropost
+    @micropost = Micropost.find_by(id: params[:micropost_id])
+  end
+
   def comment_params
     params.require(:comment).permit(:body)
   end
