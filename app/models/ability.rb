@@ -3,23 +3,21 @@ class Ability
 
   def initialize(user)
 
-    if user.nil?
-      can :read, Micropost
-    elsif user.role == 'admin'
-      can :manage, :all
-    elsif user.role == 'moderator'
+    case
+    when user.nil? then can :read, Micropost
+    when user.role == 'admin' then can :manage, :all
+    when user.role == 'moderator'
       can :read, :all
       can :manage, Micropost
       can :manage, Comment
       can :ban, User
       can [:update, :destroy], User, id: user.id
-    elsif user.role == 'member'
+    when user.role == 'member'
       can :read, :all
       can :create, Micropost
       can :create, Comment
       can [:edit, :update, :destroy], Micropost, user_id: user.id
       can [:update, :destroy], User, id: user.id
     end
-
   end
 end
