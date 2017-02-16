@@ -26,6 +26,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-vk'
 gem 'font-awesome-rails'
+gem 'redis'
 
 group :development, :test do
   gem 'faker',                 '>=1.6.6'

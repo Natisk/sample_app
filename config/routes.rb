@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount ActionCable.server => '/cable'
+
   root   'static_pages#home'
   get '/about', to: 'static_pages#about'
   get '/robot', to: 'static_pages#robot'
@@ -18,6 +20,8 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
+
+  resources :chat_rooms, only: [:new, :create, :show, :index]
 
   resources :microposts, only: [:create, :destroy, :edit, :update] do
     resources :comments, only: [:index, :create, :destroy]

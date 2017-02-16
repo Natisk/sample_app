@@ -17,4 +17,6 @@
 //= require ckeditor/ckeditor
 //= require_tree .
 
+//= require cable
+
 CKEDITOR_BASEPATH = "/assets/ckeditor/";

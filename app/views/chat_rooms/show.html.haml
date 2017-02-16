@@ -1,0 +1,12 @@
+%h1
+  = @chat_room.title
+%div{ id: 'messages', 'data-chat-room-id' => "#{@chat_room.id}" }
+  = render @chat_room.messages
+%div
+  = form_for @message, url: '#' do |f|
+    .form-group
+      = f.label :body
+      = f.text_area :body, class: 'form-control'
+      %small.text-muted
+        From 2 to 1000 characters
+    = f.submit 'Post', class: 'btn btn-primary btn-lg'

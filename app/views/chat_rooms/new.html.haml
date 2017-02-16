@@ -1,0 +1,10 @@
+- provide(:title, 'New chat room')
+.page-header.col-xs-16.col-sm-8.col-md-8.col-sm-offset-2
+  %h1 Add chat rooms
+.row
+  .col-xs-12.col-sm-8.col-md-8.col-sm-offset-2
+    = form_for @chat_room do |f|
+      .form-group
+        = f.label :title
+        = f.text_field :title, autofocus: true, class: 'form-control'
+      = f.submit 'Add!', class: 'btn btn-primary'

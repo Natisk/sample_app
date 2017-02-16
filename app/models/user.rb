@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :oauths, dependent: :destroy, autosave: true, inverse_of: :user
   has_many :comments, class_name: 'Comment', foreign_key: :commenter_id, dependent: :destroy
+  has_many :chat_rooms, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   accepts_nested_attributes_for :oauths
 

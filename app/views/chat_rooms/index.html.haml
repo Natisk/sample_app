@@ -1,0 +1,9 @@
+- provide(:title, 'Chat room')
+.page-header.col-xs-16.col-sm-8.col-md-8.col-sm-offset-2
+  %h1 Chat rooms
+.row
+  .col-xs-12.col-sm-8.col-md-8.col-sm-offset-2
+    %p.lead
+      = link_to 'New chat room', new_chat_room_path, class: 'btn btn-primary'
+    %ul
+      = render @chat_rooms
