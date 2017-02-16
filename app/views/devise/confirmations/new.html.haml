@@ -4,7 +4,7 @@
 .row
   .col-xs-12.col-md-8.col-sm-8.col-sm-offset-2
     = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { class: 'form-horizontal' }, method: :post ) do |f|
-      = 'devise_error_messages!'
+      = devise_error_messages!
       .form-group
         = f.label :email, class: 'col-sm-2 control-label'
         .col-sm-10
