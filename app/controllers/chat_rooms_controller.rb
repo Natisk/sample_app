@@ -1,8 +1,8 @@
 class ChatRoomsController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new, :create]
+  before_action :authenticate_user!, only: [:index, :new, :create, :destroy]
 
   def index
-    @chat_rooms = ChatRoom.all
+    @chat_rooms = ChatRoom.paginate(page: params[:page])
   end
 
   def new
@@ -22,6 +22,13 @@ class ChatRoomsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def destroy
+    @chat_room = ChatRoom.find_by(id: params[:id])
+    @chat_room.destroy
+    flash[:success] = 'Chat room deleted'
+    redirect_to request.referrer || root_url
   end
 
   private

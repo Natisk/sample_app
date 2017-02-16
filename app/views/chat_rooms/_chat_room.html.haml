@@ -1,2 +1,5 @@
 %li
   = link_to "Enter #{chat_room.title}", chat_room_path(chat_room)
+  = " - #{chat_room.messages.count} messages."
+  - if can?(:destroy, chat_room)
+    = link_to '', chat_room, method: :delete, data: { toggle: 'tooltip', confirm: 'You sure?' }, title: 'Delete', class: 'btn glyphicon glyphicon-remove'

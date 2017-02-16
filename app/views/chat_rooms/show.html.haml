@@ -1,12 +1,15 @@
-%h1
-  = @chat_room.title
-%div{ id: 'messages', 'data-chat-room-id' => "#{@chat_room.id}" }
-  = render @chat_room.messages
-%div
-  = form_for @message, url: '#' do |f|
-    .form-group
-      = f.label :body
-      = f.text_area :body, class: 'form-control'
-      %small.text-muted
-        From 2 to 1000 characters
-    = f.submit 'Post', class: 'btn btn-primary btn-lg'
+- provide(:title, "#{@chat_room.title}")
+.page-header.col-xs-12.col-md-8.col-sm-8.col-sm-offset-2
+  %h1
+    = @chat_room.title
+.row
+  .col-xs-12.col-md-8.col-sm-8.col-sm-offset-2
+    %div{ id: 'messages', 'data-chat-room-id' => "#{@chat_room.id}" }
+      = render @chat_room.messages
+    %div
+      = form_for @message, url: '#' do |f|
+        .form-group
+          = f.text_area :body, placeholder: 'Compose new message...', class: 'form-control'
+          %small.text-muted
+            From 2 to 1000 characters
+        = f.submit 'Post', class: 'btn btn-primary'

@@ -3,7 +3,11 @@
   %h1 Chat rooms
 .row
   .col-xs-12.col-sm-8.col-md-8.col-sm-offset-2
-    %p.lead
-      = link_to 'New chat room', new_chat_room_path, class: 'btn btn-primary'
-    %ul
+    .text-center
+      = will_paginate @chat_rooms
+      %p.lead
+        = link_to 'New chat room', new_chat_room_path, class: 'btn btn-primary'
+    %ul.list-unstyled
       = render @chat_rooms
+    .text-center
+      = will_paginate @chat_rooms

@@ -10,10 +10,12 @@ class Ability
       can :read, :all
       can :manage, Micropost
       can :manage, Comment
+      can :manage, ChatRoom
       can :ban, User
       can [:update, :destroy], User, id: user.id
     when user.role == 'member'
       can :read, :all
+      can :create, ChatRoom
       can :create, Micropost
       can :create, Comment
       can [:edit, :update, :destroy], Micropost, user_id: user.id

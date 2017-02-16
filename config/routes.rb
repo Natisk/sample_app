@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :chat_rooms, only: [:new, :create, :show, :index]
+  resources :chat_rooms, only: [:index, :new, :create, :show, :destroy]
 
   resources :microposts, only: [:create, :destroy, :edit, :update] do
     resources :comments, only: [:index, :create, :destroy]
