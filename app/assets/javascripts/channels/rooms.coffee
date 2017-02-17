@@ -11,10 +11,8 @@ $ ->
       chat_room_id: messages.data('chat-room-id')
     },
       connected: ->
-    # Called when the subscription is ready for use on the server
 
       disconnected: ->
-    # Called when the subscription has been terminated by the server
 
       received: (data) ->
         messages.append data['message']
