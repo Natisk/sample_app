@@ -1,0 +1,9 @@
+.card
+  .card-block
+    .row
+      .col-md-1
+        = gravatar_for(personal_message.user, 40)
+      .col-md-9
+        %p.card-text
+          %span.text-muted
+            = "#{personal_message.user.name} says #{time_ago_in_words(personal_message.updated_at)} ago: #{personal_message.body}"

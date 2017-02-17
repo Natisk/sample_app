@@ -2,6 +2,7 @@
   = gravatar_for(user, 50)
   = link_to user.name, user
   = ": #{user.role}"
+  = link_to 'Start conversation', new_personal_message_path(receiver_id: user)
   - if current_user.role == 'admin' || current_user.role == 'moderator'
     %br
     = user.email
@@ -10,3 +11,4 @@
         %span.glyphicon.glyphicon-pencil
       = link_to user , method: :delete, data: { toggle: 'tooltip', confirm: 'You sure?' }, title: 'Delete', class: 'btn btn-danger' do
         %span.glyphicon.glyphicon-trash
+

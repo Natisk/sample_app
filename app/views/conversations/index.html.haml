@@ -1,0 +1,11 @@
+- provide(:title, 'Conversations')
+.page-header.col-xs-12.col-md-8.col-sm-8.col-sm-offset-2
+  %h1 Conversations
+.row
+  .col-xs-12.col-md-8.col-sm-8.col-sm-offset-2
+    .text-center
+      = will_paginate @conversations
+    %ol#conversations
+      = render @conversations
+    .text-center
+      = will_paginate @conversations

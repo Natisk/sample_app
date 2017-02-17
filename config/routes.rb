@@ -21,6 +21,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :personal_messages, only: [:create]
+
+  resources :conversations, only: [:index, :show]
+
+  resources :personal_messages, only: [:new, :create]
+
   resources :chat_rooms, only: [:index, :new, :create, :show, :destroy]
 
   resources :microposts, only: [:create, :destroy, :edit, :update] do
