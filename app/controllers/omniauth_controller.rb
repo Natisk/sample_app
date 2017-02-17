@@ -1,4 +1,5 @@
 class OmniauthController < ApplicationController
+  before_action :authenticate_user!
 
   def destroy
     oauth = Oauth.find_by(id: params[:id])

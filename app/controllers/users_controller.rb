@@ -1,28 +1,23 @@
 class UsersController < ApplicationController
-
-  before_action :authenticate_user!, only: [:index, :following, :followers, :edit, :update]
+  before_action :authenticate_user!
   before_action :set_user, only: [:show, :update, :following, :followers]
 
   def index
-    users =
-        if params[:roles].present?
-          User.where(role: params[:roles])
-        else
-          User.all
-        end
+    users = case
+            when params[:roles].present? then User.where(role: params[:roles])
+            else User.all
+            end
     @users = users.paginate(page: params[:page] || 1)
   end
 
   def show
-    redirect_to root_url and return unless user_signed_in?
     @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def edit
-    if current_user.role == 'admin'
-      set_user
-    else
-      redirect_to users_url
+    case current_user.role
+    when 'admin' then set_user
+    else redirect_to users_url
     end
   end
 
@@ -36,12 +31,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if current_user.role == 'admin'
+    case current_user.role
+    when 'admin'
       set_user.destroy
       flash[:success] = 'User deleted'
       redirect_to users_url
-    else
-      redirect_to users_url
+    else redirect_to users_url
     end
   end
 

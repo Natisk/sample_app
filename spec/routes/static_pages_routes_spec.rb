@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe StaticPagesController, :type => :controller do
+RSpec.describe StaticPagesController, type: :controller do
   describe 'routing' do
 
     it do

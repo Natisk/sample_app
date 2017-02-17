@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe MicropostsController, :type => :controller do
+RSpec.describe MicropostsController, type: :controller do
   describe 'routing' do
 
     it do

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe CommentsController, :type => :controller do
+RSpec.describe CommentsController, type: :controller do
   describe 'routing' do
 
     it do

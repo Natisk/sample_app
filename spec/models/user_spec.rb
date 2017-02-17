@@ -39,12 +39,16 @@ describe User, type: :model do
 
   context 'model connection' do
     it { should have_many(:microposts) }
-    it { should have_many(:active_relationships) }
-    it { should have_many(:passive_relationships) }
+    it { should have_many(:active_relationships).class_name('Relationship') }
+    it { should have_many(:passive_relationships).class_name('Relationship') }
     it { should have_many(:following) }
     it { should have_many(:followers) }
     it { should have_many(:comments) }
-
+    it { should have_many(:chat_rooms) }
+    it { should have_many(:messages) }
+    it { should have_many(:authored_conversations).class_name('Conversation') }
+    it { should have_many(:received_conversations).class_name('Conversation') }
+    it { should have_many(:personal_messages) }
   end
 
   context 'User db column' do

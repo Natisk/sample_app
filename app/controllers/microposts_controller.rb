@@ -1,8 +1,9 @@
 class MicropostsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :authenticate_user!, only: [:create, :edit, :update,
+                                            :like_post, :dislike_post, :destroy]
   before_action :get_micropost, only: [:create, :destroy, :edit, :update]
-  before_action :permissions, only: [:destroy, :edit, :update]
   before_action :get_micropost_for_vote, only: [:like_post, :dislike_post]
+  before_action :permissions, only: [:destroy, :edit, :update]
 
   def index
     @microposts = Micropost.paginate(page: params[:page])
