@@ -24,13 +24,13 @@ jQuery ->
   if messages.length > 0
     messages_to_bottom()
     $('#new_personal_message').submit (e) ->
-    $this = $(this)
-    textarea = $this.find('#personal_message_body')
-    if $.trim(textarea.val()).length > 1
-      App.personal_chat.send_message textarea.val(), $this.find('#conversation_id').val()
-      textarea.val('')
-    e.preventDefault()
-    return false
+      $this = $(this)
+      textarea = $this.find('#personal_message_body')
+      if $.trim(textarea.val()).length > 1
+        App.personal_chat.send_message textarea.val(), $this.find('#conversation_id').val()
+        textarea.val('')
+      e.preventDefault()
+      return false
 
   $(document).on 'click', '#notification .close', ->
     $(this).parents('#notification').fadeOut(1000)
