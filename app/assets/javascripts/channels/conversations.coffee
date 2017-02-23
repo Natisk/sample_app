@@ -1,5 +1,5 @@
 jQuery ->
-  messages_to_bottom = -> messages.scrollTop(messages.prop("scrollHeight"))
+
   messages = $('#conversation-body')
 
   if $('#current-user').size() > 0
@@ -22,6 +22,7 @@ jQuery ->
           $('body').append(data['notification']) if data['notification']
 
   if messages.length > 0
+    messages_to_bottom = -> messages.scrollTop(messages.prop("scrollHeight"))
     messages_to_bottom()
     $('#new_personal_message').submit (e) ->
       $this = $(this)
