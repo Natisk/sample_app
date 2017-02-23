@@ -1,14 +1,11 @@
 $ ->
-
+  messages_to_bottom = -> messages.scrollTop(messages.prop("scrollHeight"))
   messages = $('#conversation-body')
 
   if $('#current-user').size() > 0
     App.personal_chat = App.cable.subscriptions.create {
       channel: "NotificationsChannel"
     },
-    send_message: (message, conversation_id) ->
-      @perform 'send_message', message: message, conversation_id: conversation_id
-
       connected: ->
 
       disconnected: ->
@@ -21,8 +18,13 @@ $ ->
           $.getScript('/conversations') if $('#conversations').size() > 0
           $('body').append(data['notification']) if data['notification']
 
+      send_message: (message, conversation_id) ->
+        @perform 'send_message', message: message, conversation_id: conversation_id
+
+  $(document).on 'click', '#notification .close', ->
+    $(this).parents('#notification').fadeOut(1000)
+
   if messages.length > 0
-    messages_to_bottom = -> messages.scrollTop(messages.prop("scrollHeight"))
     messages_to_bottom()
     $('#new_personal_message').submit (e) ->
       $this = $(this)
@@ -32,6 +34,3 @@ $ ->
         textarea.val('')
       e.preventDefault()
       return false
-
-  $(document).on 'click', '#notification .close', ->
-    $(this).parents('#notification').fadeOut(1000)
