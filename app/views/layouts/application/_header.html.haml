@@ -11,7 +11,7 @@
           - if user_signed_in?
             %li= link_to 'Live chat', chat_rooms_path
             %li= link_to 'Users', users_path
-            %li.dropdown
+            %li.dropdown#current-user
               %a#dropdown.dropdown-toggle{'data-toggle': 'dropdown', href: '#'}
                 = gravatar_for current_user, 20
                 %b.caret

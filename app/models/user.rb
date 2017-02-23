@@ -49,4 +49,8 @@ class User < ApplicationRecord
     return nil unless uid || provider
     Oauth.find_by(uid: uid, provider: provider)&.user
   end
+
+  def online?
+    !Redis.new.get("user_#{self.id}_online").nil?
+  end
 end

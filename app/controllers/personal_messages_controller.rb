@@ -3,6 +3,7 @@ class PersonalMessagesController < ApplicationController
   before_action :find_conversation!
 
   def new
+    redirect_to conversation_path(@conversation) and return if @conversation
     @personal_message = current_user.personal_messages.build
   end
 

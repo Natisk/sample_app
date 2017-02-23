@@ -6,7 +6,7 @@
 .row
   .col-xs-12.col-md-8.col-sm-8.col-sm-offset-2
     %div#conversation-main
-      %div#conversation-body
+      %div{ id: 'conversation-body', 'data-conversation-id' => "#{@conversation.id}"}
         = render @conversation.personal_messages
       = form_for @personal_message do |f|
         .form-group

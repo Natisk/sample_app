@@ -1,7 +1,6 @@
 module ApplicationHelper
   ALERT_TYPES = [:success, :info, :warning, :danger] unless const_defined?(:ALERT_TYPES)
 
-  # Returns the full title on a per-page basis.
   def full_title(page_title = '')
     base_title = 'Fox on Rails'
     if page_title.empty?
@@ -11,7 +10,6 @@ module ApplicationHelper
     end
   end
 
-  # Bootstrap error flash
   def bootstrap_flash(options = {})
     flash_messages = []
     flash.each do |type, message|
@@ -37,5 +35,10 @@ module ApplicationHelper
       end
     end
     flash_messages.join('\n').html_safe
+  end
+
+  def online_status(user)
+    content_tag :span, user.name,
+                class: "user-#{user.id} online_status #{'online' if user.online?}"
   end
 end
