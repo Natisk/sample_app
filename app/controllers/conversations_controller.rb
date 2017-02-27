@@ -5,10 +5,6 @@ class ConversationsController < ApplicationController
 
  def index
     @conversations = Conversation.participating(current_user).order('updated_at DESC').paginate(page: params[:page])
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def show
