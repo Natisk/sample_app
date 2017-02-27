@@ -42,6 +42,7 @@ group :development do
   gem 'spring',                '>=1.7.2'
   gem 'spring-watcher-listen', '>=2.0.0'
   gem 'binding_of_caller'
+end
 
 group :test do
   gem 'database_cleaner'
@@ -49,5 +50,5 @@ group :test do
   gem 'selenium-webdriver', '~> 3.0'
 end
 
-end
+
 
