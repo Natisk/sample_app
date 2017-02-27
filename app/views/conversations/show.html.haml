@@ -2,7 +2,7 @@
 .page-header.col-xs-12.col-md-8.col-sm-8.col-sm-offset-2
   %h1
     Chatting with
-    = @conversation.with(current_user).name
+    = online_status @conversation.with(current_user)
 .row
   .col-xs-12.col-md-8.col-sm-8.col-sm-offset-2
     %div#conversation-main
