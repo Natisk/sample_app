@@ -1,36 +1,42 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.4.0'
 
-gem 'rails',                   '>=5.0.0.1'
-gem 'bcrypt',                  '>=3.1.11'
-gem 'carrierwave',             '>=0.11.2'
-gem 'mini_magick',             '>=4.5.1'
-gem 'fog',                     '>=1.38.0'
-gem 'bootstrap-will_paginate', '>=0.0.10'
-gem 'bootstrap-sass',          '>=3.3.6'
-gem 'puma',                    '>=3.4.0'
-gem 'sass-rails',              '>=5.0.6'
+gem 'rails',                   '>=5.0.1'
+gem 'bcrypt'
+gem 'puma'
 gem 'uglifier'
-gem 'coffee-rails',            '>=4.2.1'
-gem 'jquery-rails',            '>=4.1.1'
+gem 'jquery-rails'
+gem 'coffee-rails'
 gem 'jbuilder'
-gem 'pg',                      '>=0.18.4'
+gem 'pg'
+gem 'cancancan'
+gem 'acts_as_votable'
+gem 'redis'
+
+# Layout
+gem 'bootstrap-will_paginate'
+gem 'bootstrap-sass'
+gem 'sass-rails'
 gem 'haml'
 gem 'html2haml'
+gem 'font-awesome-rails'
+
+# Authentication
 gem 'devise'
-gem 'cancancan',               '~> 1.10'
-gem 'acts_as_votable',         '~> 0.10.0'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-vk'
-gem 'font-awesome-rails'
-gem 'redis',                   '~>3.2'
+
+# Images
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
+gem 'fog'
 
 group :development, :test do
-  gem 'faker',                 '>=1.6.6'
-  gem 'rspec-rails',           '~> 3.5'
+  gem 'faker'
+  gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'rails-controller-testing'
   gem 'capybara'
@@ -38,16 +44,16 @@ end
 
 group :development do
   gem 'better_errors'
-  gem 'listen',                '>=3.0.8'
-  gem 'spring',                '>=1.7.2'
-  gem 'spring-watcher-listen', '>=2.0.0'
+  gem 'listen'
+  gem 'spring'
+  gem 'spring-watcher-listen'
   gem 'binding_of_caller'
 end
 
 group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers',       '~> 3.1'
-  gem 'selenium-webdriver', '~> 3.0'
+  gem 'selenium-webdriver',     '~> 3.0'
 end
 
 

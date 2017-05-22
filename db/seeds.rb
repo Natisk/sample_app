@@ -6,7 +6,7 @@ User.transaction do
                role:     'admin',
                confirmed_at: Time.zone.now)
 
-  99.times do |n|
+  30.times do |n|
     name  = Faker::Name.name
     email = "example#{n+1}@foxrails.com"
     password = 'password'
@@ -22,12 +22,4 @@ User.transaction do
   content = Faker::Lorem.sentence(5)
   users.each { |user| user.microposts.create!(content: content) }
   end
-
-  # Following relationships
-  # users = User.all
-  # user  = users.first
-  # following = users[2..50]
-  # followers = users[3..40]
-  # following.each { |followed| user.follow(followed) }
-  # followers.each { |follower| follower.follow(user) }
 end
