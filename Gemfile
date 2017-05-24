@@ -33,6 +33,7 @@ gem 'omniauth-vk'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'fog'
+gem 'magnific-popup-rails', '~> 1.1.0'
 
 group :development, :test do
   gem 'faker'
