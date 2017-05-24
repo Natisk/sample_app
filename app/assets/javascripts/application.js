@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require ckeditor/ckeditor
 //= require_tree .
+//= require magnific-popup
 
 //= require cable
 

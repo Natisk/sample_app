@@ -1,9 +1,19 @@
 $ ->
 
   $('#micropost_picture').bind('change', ->
-      size_in_megabytes = this.files[0].size/1024/1024
-      alert('Maximum file size is 5MB. Please choose a smaller file.') if size_in_megabytes > 5
+    size_in_megabytes = this.files[0].size/1024/1024
+    alert('Maximum file size is 5MB. Please choose a smaller file.') if size_in_megabytes > 5
   )
+
+  $('.popup-link').click (e) ->
+    e.preventDefault()
+    url = $(this).data('url')
+    $(this).magnificPopup({
+      items: {
+        src: url
+      },
+      type: 'image'
+    })
 
   $('.like').click (e) ->
     e.preventDefault()

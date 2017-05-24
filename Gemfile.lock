@@ -58,7 +58,7 @@ GEM
     bootstrap-will_paginate (1.0.0)
       will_paginate
     builder (3.2.3)
-    cancancan (1.17.0)
+    cancancan (2.0.0)
     capybara (2.14.0)
       addressable
       mime-types (>= 1.16)
@@ -233,7 +233,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (1.9.2)
+    fog-vsphere (1.10.0)
       fog-core
       rbvmomi (~> 1.9)
     fog-xenserver (0.3.0)
@@ -274,6 +274,7 @@ GEM
       ruby_dep (~> 1.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
+    magnific-popup-rails (1.1.0)
     mail (2.6.5)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
@@ -456,6 +457,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   listen
+  magnific-popup-rails (~> 1.1.0)
   mini_magick
   omniauth
   omniauth-facebook
