@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -25,9 +27,8 @@
 #
 
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable, :omniauthable, :omniauth_providers => [:facebook, :twitter, :google_oauth2, :vk]
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable, :lockable, :omniauthable, omniauth_providers: %i[facebook twitter google_oauth2 vk]
 
   has_many :oauths, dependent: :destroy, autosave: true, inverse_of: :user
   accepts_nested_attributes_for :oauths
@@ -35,10 +36,12 @@ class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :comments, class_name: 'Comment', foreign_key: :commenter_id, dependent: :destroy
 
-  has_many :active_relationships, class_name:  'Relationship',
+  has_many :active_relationships,
+           class_name:  'Relationship',
            foreign_key: :follower_id,
            dependent:   :destroy
-  has_many :passive_relationships, class_name:  'Relationship',
+  has_many :passive_relationships,
+           class_name:  'Relationship',
            foreign_key: :followed_id,
            dependent:   :destroy
   has_many :following, through: :active_relationships,  source: :followed
@@ -77,6 +80,6 @@ class User < ApplicationRecord
   end
 
   def online?
-    !Redis.new.get("user_#{self.id}_online").nil?
+    Redis.new.get("user_#{self.id}_online").present?
   end
 end

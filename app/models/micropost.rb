@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: microposts
@@ -11,13 +13,18 @@
 #
 
 class Micropost < ApplicationRecord
+  acts_as_votable
+
   belongs_to :user
   has_many :comments, dependent: :destroy
+
   default_scope -> { order(created_at: :desc) }
+
   mount_uploader :picture, PictureUploader
+
   validates :user, :content, presence: true
   validate  :picture_size
-  acts_as_votable
+
   self.per_page = 10
 
   private

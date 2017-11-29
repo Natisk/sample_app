@@ -1,12 +1,11 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
-  ALERT_TYPES = [:success, :info, :warning, :danger] unless const_defined?(:ALERT_TYPES)
+  ALERT_TYPES = %i[success info warning danger] unless const_defined?(:ALERT_TYPES)
 
   def full_title(page_title = '')
     base_title = 'Fox on Rails'
-    case
-    when page_title.empty? then base_title
-    else page_title + ' | ' + base_title
-    end
+    page_title.empty? ? base_title : (page_title + ' | ' + base_title)
   end
 
   def bootstrap_flash(options = {})
@@ -23,7 +22,7 @@ module ApplicationHelper
 
       tag_class = options.extract!(:class)[:class]
       tag_options = {
-          class: "alert fade in alert-#{type} #{tag_class} col-xs-12 col-sm-8 col-sm-offset-2"
+        class: "alert fade in alert-#{type} #{tag_class} col-xs-12 col-sm-8 col-sm-offset-2"
       }.merge(options)
 
       close_button = content_tag(:button, raw('&times;'), type: 'button', class: 'close', 'data-dismiss' => 'alert')
