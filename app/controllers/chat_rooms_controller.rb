@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChatRoomsController < ApplicationController
   before_action :authenticate_user!
 
@@ -10,13 +12,13 @@ class ChatRoomsController < ApplicationController
   end
 
   def show
-    @chat_room = ChatRoom.includes(:messages).find_by(id: params[:id])
+    @chat_room = ChatRoom.includes(:messages).find(params[:id])
     @message = Message.new
   end
 
   def create
-    @chat_room = current_user.chat_rooms.build(chat_room_params)
-    if @chat_room.save
+    chat_room = current_user.chat_rooms.build(chat_room_params)
+    if chat_room.save
       flash[:success] = 'Chat room added!'
       redirect_to chat_rooms_path
     else
@@ -25,8 +27,8 @@ class ChatRoomsController < ApplicationController
   end
 
   def destroy
-    @chat_room = ChatRoom.find_by(id: params[:id])
-    @chat_room.destroy
+    chat_room = ChatRoom.find(params[:id])
+    chat_room.destroy
     flash[:success] = 'Chat room deleted'
     redirect_to request.referrer || root_url
   end
@@ -34,6 +36,6 @@ class ChatRoomsController < ApplicationController
   private
 
   def chat_room_params
-    params.require(:chat_room).permit(:title)
+    params.require(:chat_room).permit %i[title]
   end
 end

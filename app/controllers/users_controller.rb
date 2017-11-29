@@ -1,12 +1,11 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :update, :following, :followers]
+  before_action :set_user, only: %i[show update following followers]
 
   def index
-    users = case
-            when params[:roles].present? then User.where(role: params[:roles])
-            else User.all
-            end
+    users = params[:roles].present? ? User.where(role: params[:roles]) : User.all
     @users = users.paginate(page: params[:page] || 1)
   end
 
@@ -15,10 +14,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    case current_user.role
-    when 'admin' then set_user
-    else redirect_to users_url
-    end
+    current_user.role == 'admin' ? set_user : redirect_to users_url
   end
 
   def update
@@ -31,12 +27,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    case current_user.role
-    when 'admin'
+    if current_user.role == 'admin'
       set_user.destroy
       flash[:success] = 'User deleted'
       redirect_to users_url
-    else redirect_to users_url
+    else
+      redirect_to users_url
     end
   end
 
@@ -59,6 +55,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :role)
+    params.require(:user).permit %i[name email role]
   end
 end

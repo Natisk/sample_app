@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   include CanCan::ControllerAdditions
 
@@ -6,8 +8,16 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :role, :confirmed_at, oauths_attributes: [:uid, :provider, :link] ])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :role])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [
+      :name,
+      :role,
+      :confirmed_at,
+      oauths_attributes: %i[
+        uid
+        provider
+        link
+      ]
+    ])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[name role])
   end
 end
-

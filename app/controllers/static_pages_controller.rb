@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StaticPagesController < ApplicationController
 
   def home
@@ -7,9 +9,7 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def about
-  end
+  def about; end
 
-  def robot
-  end
+  def robot; end
 end
