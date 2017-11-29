@@ -1,4 +1,4 @@
-# Be sure to restart your server when you modify this file.
+# frozen_string_literal: true
 #
 # This file contains migration options to ease your Rails 5.0 upgrade.
 #
