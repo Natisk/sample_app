@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'users', :js do
 
   context 'users role filter on show page' do
     before { user_login }
-    let!(:admin) { FactoryGirl.create(:admin) }
-    let!(:moderator) { FactoryGirl.create(:moderator) }
+    let!(:admin) { FactoryBot.create(:admin) }
+    let!(:moderator) { FactoryBot.create(:moderator) }
 
     scenario 'it show only admins when it selected' do
       sleep(1)

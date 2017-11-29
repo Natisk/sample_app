@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-RSpec.describe StaticPagesController, :type => :controller do
+RSpec.describe StaticPagesController, type: :controller do
 
   describe 'GET #home' do
     before { get :home }

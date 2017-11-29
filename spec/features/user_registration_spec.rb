@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'the user registration process', :js do
@@ -14,8 +16,11 @@ describe 'the user registration process', :js do
       end
       click_button 'Sign up'
 
-      expect(page).to have_content 'A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.'
-      expect(User.last).to eq( User.find_by(name: 'Maxim', email: 'maxim@example.com') )
+      expect(page).to have_content(
+        'A message with a confirmation link has been sent to your email address.'\
+        ' Please follow the link to activate your account.'
+      )
+      expect(User.last).to eq(User.find_by(name: 'Maxim', email: 'maxim@example.com'))
     end
   end
 end

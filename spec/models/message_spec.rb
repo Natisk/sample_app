@@ -11,10 +11,10 @@ describe Message, type: :model do
     it { should belong_to(:user) }
     it { should belong_to(:chat_room) }
 
-    it { should have_db_column(:body).of_type(:text)}
-    it { should have_db_column(:user_id).of_type(:integer)}
-    it { should have_db_column(:chat_room_id).of_type(:integer)}
-    it { should have_db_column(:created_at).of_type(:datetime).with_options(null: false)}
-    it { should have_db_column(:updated_at).of_type(:datetime).with_options(null: false)}
+    it { should have_db_column(:body).of_type(:text) }
+    it { should have_db_column(:user_id).of_type(:integer) }
+    it { should have_db_column(:chat_room_id).of_type(:integer) }
+    it { should have_db_column(:created_at).of_type(:datetime).with_options(null: false) }
+    it { should have_db_column(:updated_at).of_type(:datetime).with_options(null: false) }
   end
 end

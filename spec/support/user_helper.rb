@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module UserHelper
   def user_login
-    @user = FactoryGirl.create(:user)
+    @user = FactoryBot.create(:user)
     visit '/login'
     within('.form-horizontal') do
       fill_in 'Email', with: @user.email
@@ -10,23 +12,23 @@ module UserHelper
   end
 
   def admin_login
-      @admin = FactoryGirl.create(:admin)
-      visit '/login'
-      within('.form-horizontal') do
-          fill_in 'Email', with: @admin.email
-          fill_in 'Password', with: @admin.password
-      end
-      click_button 'Log in'
+    @admin = FactoryBot.create(:admin)
+    visit '/login'
+    within('.form-horizontal') do
+      fill_in 'Email', with: @admin.email
+      fill_in 'Password', with: @admin.password
+    end
+    click_button 'Log in'
   end
 
   def moderator_login
-      @moderator = FactoryGirl.create(:moderator)
-      visit '/login'
-      within('.form-horizontal') do
-          fill_in 'Email', with: @moderator.email
-          fill_in 'Password', with: @moderator.password
-      end
-      click_button 'Log in'
+    @moderator = FactoryBot.create(:moderator)
+    visit '/login'
+    within('.form-horizontal') do
+      fill_in 'Email', with: @moderator.email
+      fill_in 'Password', with: @moderator.password
+    end
+    click_button 'Log in'
   end
 
   def user_logout

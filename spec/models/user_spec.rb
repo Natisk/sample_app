@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe User, type: :model do
 
-  let(:user1) { FactoryGirl.create(:user) }
-  let(:user2) { FactoryGirl.create(:user) }
-  let(:micropost1) { FactoryGirl.create(:micropost, user: user1) }
-  let(:micropost2) { FactoryGirl.create(:micropost, user: user2) }
+  let(:user1) { FactoryBot.create(:user) }
+  let(:user2) { FactoryBot.create(:user) }
+  let(:micropost1) { FactoryBot.create(:micropost, user: user1) }
+  let(:micropost2) { FactoryBot.create(:micropost, user: user2) }
   before { @test_relationships = user1.follow(user2) }
 
   it 'is valid with valid attributes' do
@@ -52,11 +54,11 @@ describe User, type: :model do
   end
 
   context 'User db column' do
-    it { should have_db_column(:id).of_type(:integer)}
-    it { should have_db_column(:name).of_type(:string)}
-    it { should have_db_column(:email).of_type(:string).with_options(default: '', null: false)}
-    it { should have_db_column(:encrypted_password).of_type(:string).with_options(default: '', null: false)}
-    it { should have_db_column(:sign_in_count).of_type(:integer).with_options(default: 0)}
-    it { should have_db_column(:role).of_type(:string).with_options(default: 'member')}
+    it { should have_db_column(:id).of_type(:integer) }
+    it { should have_db_column(:name).of_type(:string) }
+    it { should have_db_column(:email).of_type(:string).with_options(default: '', null: false) }
+    it { should have_db_column(:encrypted_password).of_type(:string).with_options(default: '', null: false) }
+    it { should have_db_column(:sign_in_count).of_type(:integer).with_options(default: 0) }
+    it { should have_db_column(:role).of_type(:string).with_options(default: 'member') }
   end
 end

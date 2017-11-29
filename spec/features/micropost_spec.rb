@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'micropost' do
@@ -19,7 +21,7 @@ describe 'micropost' do
 
   context 'edit and delete micropost' do
     before { user_login }
-    let!(:micropost) { FactoryGirl.create(:micropost, user: @user) }
+    let!(:micropost) { FactoryBot.create(:micropost, user: @user) }
 
     scenario 'edit micropost' do
       sleep(1)
@@ -46,8 +48,8 @@ describe 'micropost' do
 
   context 'edit and delete micropost by admin' do
     before { admin_login }
-    let(:user) { FactoryGirl.create(:user) }
-    let!(:micropost) { FactoryGirl.create(:micropost, user: user) }
+    let(:user) { FactoryBot.create(:user) }
+    let!(:micropost) { FactoryBot.create(:micropost, user: user) }
 
     scenario 'edit micropost' do
       visit abyss_path
@@ -76,8 +78,8 @@ describe 'micropost' do
 
   context 'edit and delete micropost by moderator' do
     before { moderator_login }
-    let(:user) { FactoryGirl.create(:user) }
-    let!(:micropost) { FactoryGirl.create(:micropost, user: user) }
+    let(:user) { FactoryBot.create(:user) }
+    let!(:micropost) { FactoryBot.create(:micropost, user: user) }
 
     scenario 'edit micropost' do
       sleep(1)
@@ -105,5 +107,3 @@ describe 'micropost' do
     end
   end
 end
-
-

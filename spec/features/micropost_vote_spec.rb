@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'micropost', :js do
 
   context 'vote micropost' do
     before { user_login }
-    let!(:micropost) { FactoryGirl.create(:micropost, user: @user) }
+    let!(:micropost) { FactoryBot.create(:micropost, user: @user) }
 
 
     scenario 'like micropost' do
@@ -32,4 +34,3 @@ describe 'micropost', :js do
     end
   end
 end
-

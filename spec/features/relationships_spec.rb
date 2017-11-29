@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'relationships', :js do
   before { user_login }
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryBot.create(:user) }
 
   scenario 'follow and unfollow user' do
     sleep(1)
@@ -24,4 +26,3 @@ describe 'relationships', :js do
     end
   end
 end
-
